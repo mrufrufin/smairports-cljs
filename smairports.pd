@@ -1,0 +1,2396 @@
+#N canvas 765 289 1101 745 12;
+#X obj 823 279 dac~ 1 2;
+#N canvas 529 640 1402 796 amb 1;
+#X obj 65 262 soundfiler;
+#X obj 20 342 s ambSamp;
+#X obj 500 33 r ambSamp;
+#X obj 505 105 phasor~;
+#X obj 610 49 t b f;
+#X obj 599 86 samplerate~;
+#X obj 637 114 /;
+#X obj 588 193 *, f 5;
+#X obj 501 186 *~;
+#X obj 131 157 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 99 175 openpanel;
+#X msg 98 210 read -resize -maxsize 4e+07 \$1 ambL ambR;
+#X obj 388 560 s~ ambsL;
+#X obj 669 560 s~ ambsR;
+#X obj 311 25 loadbang;
+#X obj 622 143 t b f;
+#X obj 707 22 r ambOn;
+#X obj 704 60 switch~;
+#X msg 401 45 1;
+#X obj 877 462 pack 0 2;
+#X obj 889 498 line;
+#X obj 975 356 sel 0 1;
+#X obj 984 327 r changeBg;
+#X msg 935 411 8000;
+#X obj 853 196 r stop;
+#X msg 875 371 20000;
+#N canvas 1 281 1282 659 raterandom 0;
+#X obj 350 260 line~;
+#X obj 347 322 *~;
+#X obj 424 85 t b b;
+#X obj 213 107 inlet~;
+#X obj 638 124 sel 1 0;
+#X obj 532 379 spigot;
+#X msg 505 318 0;
+#X obj 847 18 inlet;
+#X obj 644 272 line~;
+#X obj 641 334 *~;
+#X obj 718 97 t b b;
+#X obj 538 86 inlet~;
+#X obj 463 415 spigot;
+#X msg 447 340 1;
+#X msg 446 308 0;
+#X msg 560 290 1;
+#X obj 646 78 inlet;
+#X obj 837 70 loadbang;
+#X msg 828 117 1;
+#X obj 416 485 outlet~;
+#X obj 338 484 outlet~;
+#X obj 389 405 f;
+#X obj 637 479 outlet;
+#X obj 722 486 outlet;
+#X obj 436 159 t b b b;
+#X obj 730 171 t b b b;
+#X obj 972 374 spigot;
+#X msg 945 313 0;
+#X obj 877 373 spigot;
+#X msg 887 335 1;
+#X msg 886 303 0;
+#X msg 1000 285 1;
+#X obj 803 382 f;
+#X obj 883 185 / 100;
+#X obj 514 234 / 100;
+#X obj 883 159 random 81;
+#X obj 514 208 random 81;
+#X obj 578 535 outlet;
+#X obj 481 569 outlet;
+#X obj 433 213 / 1000;
+#X obj 727 225 / 1000;
+#N canvas 607 161 836 548 overlapL 0;
+#X obj 235 98 inlet~;
+#X obj 443 273 outlet~;
+#X obj 441 232 *~;
+#X obj 633 187 line~;
+#X obj 658 35 inlet;
+#X obj 529 46 loadbang;
+#X obj 223 191 delwrite~ \$0-overlapL 5000;
+#X obj 442 189 delread~ \$0-overlapL 5000;
+#X obj 609 96 pipe 2500;
+#X msg 593 146 0 2500;
+#X msg 675 144 1 2500;
+#X connect 0 0 6 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X connect 4 0 10 0;
+#X connect 4 0 8 0;
+#X connect 5 0 9 0;
+#X connect 7 0 2 0;
+#X connect 8 0 9 0;
+#X connect 9 0 3 0;
+#X connect 10 0 3 0;
+#X restore 327 153 pd overlapL;
+#N canvas 775 417 836 548 overlapR 0;
+#X obj 235 98 inlet~;
+#X obj 443 273 outlet~;
+#X obj 441 232 *~;
+#X obj 633 187 line~;
+#X obj 658 35 inlet;
+#X obj 545 74 loadbang;
+#X obj 222 192 delwrite~ \$0-overlapR 5000;
+#X obj 443 189 delread~ \$0-overlapR 5000;
+#X obj 608 95 pipe 2500;
+#X msg 579 153 0 2500;
+#X msg 676 149 1 2500;
+#X connect 0 0 6 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X connect 4 0 10 0;
+#X connect 4 0 8 0;
+#X connect 5 0 9 0;
+#X connect 7 0 2 0;
+#X connect 8 0 9 0;
+#X connect 9 0 3 0;
+#X connect 10 0 3 0;
+#X restore 649 393 pd overlapR;
+#X obj 430 189 random 250;
+#X obj 726 200 random 250;
+#X obj 433 237 + 0.1;
+#X obj 726 249 + 0.1;
+#X obj 436 135 pipe 2500;
+#X msg 312 216 0 2500;
+#X msg 380 225 1 2500;
+#X obj 372 360 pipe 2500;
+#X msg 616 230 0 2500;
+#X msg 678 235 1 2500;
+#X obj 729 147 pipe 2500;
+#X connect 0 0 1 1;
+#X connect 1 0 20 0;
+#X connect 2 0 47 0;
+#X connect 2 1 48 0;
+#X connect 2 1 41 1;
+#X connect 3 0 1 0;
+#X connect 3 0 41 0;
+#X connect 4 0 6 0;
+#X connect 4 0 13 0;
+#X connect 4 0 29 0;
+#X connect 4 0 27 0;
+#X connect 4 0 32 0;
+#X connect 4 0 42 1;
+#X connect 4 0 50 0;
+#X connect 4 1 14 0;
+#X connect 4 1 15 0;
+#X connect 4 1 30 0;
+#X connect 4 1 31 0;
+#X connect 5 0 37 0;
+#X connect 6 0 5 1;
+#X connect 7 0 2 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 1;
+#X connect 9 0 19 0;
+#X connect 10 0 53 0;
+#X connect 10 1 51 0;
+#X connect 10 1 42 1;
+#X connect 11 0 9 0;
+#X connect 11 0 42 0;
+#X connect 12 0 37 0;
+#X connect 13 0 12 1;
+#X connect 14 0 12 1;
+#X connect 15 0 5 1;
+#X connect 16 0 4 0;
+#X connect 17 0 18 0;
+#X connect 17 0 52 0;
+#X connect 17 0 49 0;
+#X connect 18 0 4 0;
+#X connect 21 0 37 0;
+#X connect 24 0 49 0;
+#X connect 24 1 43 0;
+#X connect 24 2 36 0;
+#X connect 25 0 52 0;
+#X connect 25 1 44 0;
+#X connect 25 2 35 0;
+#X connect 26 0 23 0;
+#X connect 27 0 26 1;
+#X connect 28 0 23 0;
+#X connect 29 0 28 1;
+#X connect 30 0 28 1;
+#X connect 31 0 26 1;
+#X connect 32 0 23 0;
+#X connect 33 0 26 0;
+#X connect 34 0 22 0;
+#X connect 34 0 28 0;
+#X connect 34 0 32 1;
+#X connect 35 0 33 0;
+#X connect 36 0 34 0;
+#X connect 39 0 45 0;
+#X connect 40 0 46 0;
+#X connect 41 0 20 0;
+#X connect 42 0 19 0;
+#X connect 43 0 39 0;
+#X connect 44 0 40 0;
+#X connect 45 0 12 0;
+#X connect 45 0 21 1;
+#X connect 45 0 38 0;
+#X connect 46 0 5 0;
+#X connect 47 0 24 0;
+#X connect 48 0 0 0;
+#X connect 49 0 0 0;
+#X connect 50 0 21 0;
+#X connect 51 0 8 0;
+#X connect 52 0 8 0;
+#X connect 53 0 25 0;
+#X restore 577 284 pd raterandom;
+#X obj 990 131 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 1023 130 sync;
+#X obj 837 74 t b b;
+#X obj 896 100 random 1001;
+#X obj 682 176 *, f 5;
+#X obj 699 127 t b f;
+#X obj 782 169 phasor~;
+#X obj 777 199 *~;
+#X obj 973 53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 409 504 *~ 1;
+#X obj 677 506 *~ 1;
+#X floatatom 468 448 5 0 0 0 - - -;
+#X floatatom 508 481 5 0 0 0 - - -;
+#X floatatom 574 481 5 0 0 0 - - -;
+#X floatatom 616 482 5 0 0 0 - - -;
+#X obj 435 242 *;
+#X obj 430 188 r ambSamp;
+#X obj 956 233 *;
+#X obj 951 179 r ambSamp;
+#X obj 529 261 i;
+#X obj 738 308 i;
+#X obj 1098 131 table ambL 2.853e+07;
+#X obj 1101 171 table ambR 2.853e+07;
+#X msg 406 139 0;
+#X obj 440 37 t f b;
+#X msg 481 67 0;
+#X obj 1017 213 t f b;
+#X msg 1082 263 0;
+#X msg 70 73 read ../musicofairports/sounds/moa-amb2s.wav ambL ambR
+;
+#X obj 837 50 metro 5000;
+#X obj 896 125 > 450;
+#X obj 369 368 fgrainstr2~ ambL 5;
+#X obj 707 375 fgrainstr2~ ambR 5;
+#X obj 786 114 dkrgate 39;
+#X connect 0 0 1 0;
+#X connect 0 0 58 3;
+#X connect 0 0 59 3;
+#X connect 2 0 4 0;
+#X connect 2 0 8 1;
+#X connect 2 0 34 1;
+#X connect 3 0 8 0;
+#X connect 4 0 5 0;
+#X connect 4 1 6 1;
+#X connect 5 0 6 0;
+#X connect 6 0 15 0;
+#X connect 6 0 32 0;
+#X connect 7 0 3 0;
+#X connect 8 0 58 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 0 0;
+#X connect 14 0 18 0;
+#X connect 14 0 55 0;
+#X connect 14 0 25 0;
+#X connect 14 0 50 0;
+#X connect 15 0 7 0;
+#X connect 15 1 7 1;
+#X connect 16 0 17 0;
+#X connect 16 0 37 1;
+#X connect 16 0 36 1;
+#X connect 16 0 35 0;
+#X connect 16 0 56 0;
+#X connect 18 0 7 0;
+#X connect 19 0 20 0;
+#X connect 21 0 25 0;
+#X connect 21 1 23 0;
+#X connect 22 0 21 0;
+#X connect 23 0 19 0;
+#X connect 24 0 25 0;
+#X connect 25 0 19 0;
+#X connect 26 0 36 0;
+#X connect 26 1 37 0;
+#X connect 26 2 7 0;
+#X connect 26 2 38 0;
+#X connect 26 3 31 0;
+#X connect 26 3 39 0;
+#X connect 26 4 40 0;
+#X connect 26 4 51 0;
+#X connect 26 5 41 0;
+#X connect 26 5 53 0;
+#X connect 27 0 26 2;
+#X connect 29 0 60 0;
+#X connect 29 1 30 0;
+#X connect 30 0 57 0;
+#X connect 31 0 33 0;
+#X connect 32 0 31 0;
+#X connect 32 1 31 1;
+#X connect 33 0 34 0;
+#X connect 34 0 59 0;
+#X connect 35 0 26 3;
+#X connect 36 0 12 0;
+#X connect 37 0 13 0;
+#X connect 42 0 46 0;
+#X connect 43 0 42 1;
+#X connect 44 0 47 0;
+#X connect 45 0 44 1;
+#X connect 46 0 58 1;
+#X connect 47 0 59 1;
+#X connect 50 0 42 0;
+#X connect 50 0 44 0;
+#X connect 51 0 42 0;
+#X connect 51 1 52 0;
+#X connect 52 0 3 1;
+#X connect 53 0 44 0;
+#X connect 53 1 54 0;
+#X connect 54 0 33 1;
+#X connect 55 0 0 0;
+#X connect 56 0 29 0;
+#X connect 57 0 27 0;
+#X connect 58 0 26 0;
+#X connect 59 0 26 1;
+#X connect 60 0 26 3;
+#X restore 62 698 pd amb;
+#X obj 188 103 s ambOn;
+#X obj 194 56 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 1036 237 788 822 ambStuff 0;
+#X obj 137 432 inlet;
+#N canvas 123 360 450 300 suppressor 0;
+#X obj 68 258 outlet~;
+#X obj 149 51 r d-gate;
+#X obj 150 124 timer;
+#X obj 171 92 t b b;
+#X obj 277 78 change;
+#X obj 97 177 inlet~;
+#X obj 186 178 inlet~;
+#X obj 179 255 outlet~;
+#X obj 60 226 *~;
+#X obj 205 229 *~;
+#X obj 353 58 sel 0 1;
+#X obj 270 178 line~;
+#X obj 263 218 *~;
+#X obj 349 248 s changeBg;
+#X msg 365 122 1;
+#X obj 220 101 r stop;
+#X obj 195 16 r a-flnum;
+#X msg 280 130 0.6;
+#X obj 306 148 pack 0 4250;
+#X obj 261 35 > 3750;
+#X connect 1 0 3 0;
+#X connect 2 0 19 0;
+#X connect 3 0 2 0;
+#X connect 3 1 2 1;
+#X connect 4 0 10 0;
+#X connect 4 0 13 0;
+#X connect 5 0 8 0;
+#X connect 6 0 9 0;
+#X connect 8 0 0 0;
+#X connect 9 0 7 0;
+#X connect 10 0 17 0;
+#X connect 10 1 14 0;
+#X connect 11 0 12 0;
+#X connect 11 0 12 1;
+#X connect 12 0 9 1;
+#X connect 12 0 8 1;
+#X connect 14 0 18 0;
+#X connect 15 0 17 0;
+#X connect 16 0 3 0;
+#X connect 17 0 18 0;
+#X connect 18 0 11 0;
+#X connect 19 0 4 0;
+#X restore 314 268 pd suppressor;
+#X obj 375 426 *~;
+#X obj 445 419 *~;
+#X obj 146 465 sel 0 1439;
+#X msg 212 523 0;
+#X obj 250 465 loadbang;
+#X obj 194 594 line~;
+#X obj 285 523 r stop;
+#X obj 275 205 hip~ 20;
+#X obj 419 204 hip~ 20;
+#X obj 405 533 s~ procAmbL;
+#X obj 515 531 s~ procAmbR;
+#X obj 617 336 switch~;
+#X obj 629 288 r ambOn;
+#X obj 381 24 r~ ambsL;
+#X obj 671 67 r~ ambsR;
+#X obj 394 141 freeverb~;
+#X text 611 245 0.35;
+#X obj 112 108 loadbang;
+#X obj 548 77 sel 0 1;
+#X obj 530 41 r changeBg;
+#X msg 560 152 roomsize 0.45;
+#X obj 689 180 r stop;
+#X msg 240 96 wet 0.1;
+#X msg 484 99 dry 0.2;
+#X msg 232 33 damping 0.3;
+#X msg 293 64 roomsize 0.55;
+#X obj 285 237 lop~ 16000;
+#X obj 423 242 lop~ 16000;
+#X obj 416 502 *~ 1;
+#X obj 489 487 *~ 1;
+#X obj 194 618 *~;
+#X msg 161 519 0.7;
+#X obj 181 556 pack 0 10000;
+#X obj 244 494 delay 6500;
+#X connect 0 0 4 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 2 0 30 0;
+#X connect 3 0 31 0;
+#X connect 4 0 33 0;
+#X connect 4 1 35 0;
+#X connect 5 0 34 0;
+#X connect 6 0 5 0;
+#X connect 7 0 32 0;
+#X connect 7 0 32 1;
+#X connect 8 0 5 0;
+#X connect 9 0 28 0;
+#X connect 10 0 29 0;
+#X connect 14 0 13 0;
+#X connect 14 0 31 1;
+#X connect 14 0 30 1;
+#X connect 15 0 9 0;
+#X connect 16 0 10 0;
+#X connect 19 0 24 0;
+#X connect 19 0 26 0;
+#X connect 19 0 25 0;
+#X connect 19 0 22 0;
+#X connect 20 0 22 0;
+#X connect 20 1 27 0;
+#X connect 21 0 20 0;
+#X connect 22 0 17 0;
+#X connect 23 0 22 0;
+#X connect 24 0 17 0;
+#X connect 25 0 17 0;
+#X connect 26 0 17 0;
+#X connect 27 0 17 0;
+#X connect 28 0 1 0;
+#X connect 29 0 1 1;
+#X connect 30 0 11 0;
+#X connect 31 0 12 0;
+#X connect 32 0 2 1;
+#X connect 32 0 3 1;
+#X connect 33 0 34 0;
+#X connect 34 0 7 0;
+#X connect 35 0 5 0;
+#X restore 494 570 pd ambStuff;
+#X obj 495 507 r d-sec;
+#X floatatom 408 542 5 0 0 0 - - -;
+#X obj 808 221 r~ procAmbL;
+#X obj 889 223 r~ procAmbR;
+#X obj 724 231 r~ procArrL;
+#X obj 944 252 r~ procArrR;
+#X obj 287 58 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 283 105 s arrOn;
+#X obj 717 121 r~ procDepL;
+#X obj 905 161 r~ procDepR;
+#X obj 367 62 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 364 109 s depOn;
+#X obj 212 9 loadbang;
+#X msg 232 31 0;
+#N canvas 987 549 904 741 sched 0;
+#X msg 93 369 line 0 \, auto;
+#X obj 337 276 loadbang;
+#X obj 67 157 r \$0-smw-play;
+#X msg 218 361 stop;
+#X msg 191 78 read hkseq.txt;
+#X obj 187 131 text define -k \$0-smairport-seq;
+#A set \$1-ts 00:00 \; 1000 \$1-ts 00:01 \; 1000 \$1-ts 00:02 \; 1000
+\$1-ts 00:03 \; 1000 \$1-ts 00:04 \; 1000 \$1-ts 00:05 \; \$1-d_flight
+QR_815 \; \$1-d_airline QATAR_AIRWAYS \; \$1-d_loc 24 \; \$1-d_city
+Doha \; 1000 \$1-ts 00:06 \; 1000 \$1-ts 00:07 \; 1000 \$1-ts 00:08
+\; 1000 \$1-ts 00:09 \; 1000 \$1-ts 00:10 \; 1000 \$1-ts 00:11 \; 1000
+\$1-ts 00:12 \; 1000 \$1-ts 00:13 \; \$1-a_flight BX_391 \; \$1-a_airline
+AIR_BUSAN \; \$1-a_loc B \; \$1-a_city Busan \; 1000 \$1-ts 00:14 \;
+1000 \$1-ts 00:15 \; 1000 \$1-ts 00:16 \; 1000 \$1-ts 00:17 \; \$1-d_flight
+CX_753 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 68 \; \$1-d_city
+Jakarta \; 1000 \$1-ts 00:18 \; 1000 \$1-ts 00:19 \; 1000 \$1-ts 00:20
+\; 1000 \$1-ts 00:21 \; 1000 \$1-ts 00:22 \; 1000 \$1-ts 00:23 \; \$1-d_flight
+OZ_746 \; \$1-d_airline Asiana_Airlines \; \$1-d_loc 17 \; \$1-d_city
+Seoul/ICN \; 1000 \$1-ts 00:24 \; 1000 \$1-ts 00:25 \; \$1-d_flight
+CX_261 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 65 \; \$1-d_city
+Paris \; 1000 \$1-ts 00:26 \; 1000 \$1-ts 00:27 \; 1000 \$1-ts 00:28
+\; 1000 \$1-ts 00:29 \; 1000 \$1-ts 00:30 \; 1000 \$1-ts 00:31 \; 1000
+\$1-ts 00:32 \; 1000 \$1-ts 00:33 \; 1000 \$1-ts 00:34 \; 1000 \$1-ts
+00:35 \; \$1-a_flight KE_615 \; \$1-a_airline Korean_Air \; \$1-a_loc
+B \; \$1-a_city Busan \; 1000 \$1-ts 00:36 \; 1000 \$1-ts 00:37 \;
+1000 \$1-ts 00:38 \; 1000 \$1-ts 00:39 \; \$1-d_flight EK_381 \; \$1-d_airline
+Emirates \; \$1-d_loc 62 \; \$1-d_city Dubai \; 1000 \$1-ts 00:40 \;
+1000 \$1-ts 00:41 \; \$1-d_flight HX_755 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 510 \; \$1-d_city Krabi \; \$1-a_flight MM_067 \; \$1-a_airline
+Peach_Aviation \; \$1-a_loc B \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts
+00:42 \; 1000 \$1-ts 00:43 \; \$1-d_flight CX_880 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 3 \; \$1-d_city Los_Angeles \; \$1-d_flight
+CX_383 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 26 \; \$1-d_city
+Zurich \; \$1-d_flight CX_293 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+25 \; \$1-d_city Rome \; \$1-a_flight KA_975 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Beijing \; 1000 \$1-ts 00:44 \; \$1-a_flight
+CX_636 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Singapore \; 1000 \$1-ts 00:45 \; \$1-a_flight UO_625D \; \$1-a_airline
+HK_Express \; \$1-a_loc A \; \$1-a_city Tokyo/HND \; 1000 \$1-ts 00:46
+\; 1000 \$1-ts 00:47 \; 1000 \$1-ts 00:48 \; 1000 \$1-ts 00:49 \; 1000
+\$1-ts 00:50 \; 1000 \$1-ts 00:51 \; 1000 \$1-ts 00:52 \; 1000 \$1-ts
+00:53 \; \$1-d_flight CX_105 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+70 \; \$1-d_city Melbourne \; \$1-d_flight CX_233 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 32 \; \$1-d_city Milan/MXP \; 1000 \$1-ts
+00:54 \; \$1-d_flight AY_070 \; \$1-d_airline FINNAIR \; \$1-d_loc
+44 \; \$1-d_city Helsinki \; 1000 \$1-ts 00:55 \; 1000 \$1-ts 00:56
+\; 1000 \$1-ts 00:57 \; \$1-d_flight KE_608 \; \$1-d_airline Korean_Air
+\; \$1-d_loc 19 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 00:58 \; 1000
+\$1-ts 00:59 \; 1000 \$1-ts 01:00 \; 1000 \$1-ts 01:01 \; 1000 \$1-ts
+01:02 \; 1000 \$1-ts 01:03 \; 1000 \$1-ts 01:04 \; \$1-d_flight ET_609
+\; \$1-d_airline Ethiopian_Airlines \; \$1-d_loc 42 \; \$1-d_city Addis_Ababa
+\; \$1-d_flight CX_412 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+36 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 01:05 \; \$1-a_flight JW_345
+\; \$1-a_airline Vanilla_Air \; \$1-a_loc B \; \$1-a_city Tokyo/NRT
+\; 1000 \$1-ts 01:06 \; 1000 \$1-ts 01:07 \; 1000 \$1-ts 01:08 \; \$1-d_flight
+CX_888 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 22 \; \$1-d_city
+Vancouver \; 1000 \$1-ts 01:09 \; 1000 \$1-ts 01:10 \; \$1-d_flight
+OZ_750 \; \$1-d_airline Asiana_Airlines \; \$1-d_loc 30 \; \$1-d_city
+Seoul/ICN \; 1000 \$1-ts 01:11 \; \$1-a_flight 5J_242 \; \$1-a_airline
+Cebu_Pacific_Air \; \$1-a_loc B \; \$1-a_city Iloilo \; 1000 \$1-ts
+01:12 \; 1000 \$1-ts 01:13 \; \$1-d_flight CX_289 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 33 \; \$1-d_city Frankfurt \; 1000 \$1-ts
+01:14 \; 1000 \$1-ts 01:15 \; \$1-a_flight HX_231 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city Shanghai/PVG \; 1000
+\$1-ts 01:16 \; \$1-d_flight CX_872 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 4 \; \$1-d_city San_Francisco \; 1000 \$1-ts 01:17 \;
+1000 \$1-ts 01:18 \; 1000 \$1-ts 01:19 \; \$1-d_flight CX_524 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 29 \; \$1-d_city Tokyo/NRT \; 1000 \$1-ts
+01:20 \; 1000 \$1-ts 01:21 \; 1000 \$1-ts 01:22 \; 1000 \$1-ts 01:23
+\; 1000 \$1-ts 01:24 \; \$1-d_flight CX_271 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 63 \; \$1-d_city Amsterdam \; 1000 \$1-ts 01:25 \; 1000
+\$1-ts 01:26 \; 1000 \$1-ts 01:27 \; 1000 \$1-ts 01:28 \; 1000 \$1-ts
+01:29 \; 1000 \$1-ts 01:30 \; 1000 \$1-ts 01:31 \; \$1-d_flight MM_068
+\; \$1-d_airline Peach_Aviation \; \$1-d_loc 21 \; \$1-d_city Osaka/Kansai
+\; 1000 \$1-ts 01:32 \; 1000 \$1-ts 01:33 \; 1000 \$1-ts 01:34 \; 1000
+\$1-ts 01:35 \; 1000 \$1-ts 01:36 \; 1000 \$1-ts 01:37 \; \$1-d_flight
+CX_255 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 1 \; \$1-d_city
+London/LHR \; 1000 \$1-ts 01:38 \; 1000 \$1-ts 01:39 \; 1000 \$1-ts
+01:40 \; 1000 \$1-ts 01:41 \; 1000 \$1-ts 01:42 \; 1000 \$1-ts 01:43
+\; \$1-a_flight UO_1621 \; \$1-a_airline HK_Express \; \$1-a_loc B
+\; \$1-a_city Seoul/ICN \; 1000 \$1-ts 01:44 \; 1000 \$1-ts 01:45 \;
+1000 \$1-ts 01:46 \; 1000 \$1-ts 01:47 \; 1000 \$1-ts 01:48 \; \$1-d_flight
+CX_659 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 2 \; \$1-d_city
+Singapore \; 1000 \$1-ts 01:49 \; 1000 \$1-ts 01:50 \; 1000 \$1-ts
+01:51 \; 1000 \$1-ts 01:52 \; 1000 \$1-ts 01:53 \; 1000 \$1-ts 01:54
+\; 1000 \$1-ts 01:55 \; 1000 \$1-ts 01:56 \; 1000 \$1-ts 01:57 \; \$1-d_flight
+5J_243 \; \$1-d_airline Cebu_Pacific_Air \; \$1-d_loc 28 \; \$1-d_city
+Iloilo \; 1000 \$1-ts 01:58 \; 1000 \$1-ts 01:59 \; 1000 \$1-ts 02:00
+\; 1000 \$1-ts 02:01 \; \$1-d_flight CX_566 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 23 \; \$1-d_city Osaka/Kansai \; 1000 \$1-ts 02:02 \;
+\$1-d_flight CX_745 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 27
+\; \$1-d_city Dubai \; \$1-a_flight 7C_2107 \; \$1-a_airline JEJU_AIR
+\; \$1-a_loc B \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 02:03 \; \$1-d_flight
+KE_616 \; \$1-d_airline Korean_Air \; \$1-d_loc 16 \; \$1-d_city Busan
+\; 1000 \$1-ts 02:04 \; 1000 \$1-ts 02:05 \; \$1-d_flight HX_767 \;
+\$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 520 \; \$1-d_city Bangkok
+\; 1000 \$1-ts 02:06 \; 1000 \$1-ts 02:07 \; 1000 \$1-ts 02:08 \; 1000
+\$1-ts 02:09 \; 1000 \$1-ts 02:10 \; 1000 \$1-ts 02:11 \; 1000 \$1-ts
+02:12 \; 1000 \$1-ts 02:13 \; 1000 \$1-ts 02:14 \; 1000 \$1-ts 02:15
+\; 1000 \$1-ts 02:16 \; 1000 \$1-ts 02:17 \; 1000 \$1-ts 02:18 \; 1000
+\$1-ts 02:19 \; 1000 \$1-ts 02:20 \; 1000 \$1-ts 02:21 \; 1000 \$1-ts
+02:22 \; 1000 \$1-ts 02:23 \; 1000 \$1-ts 02:24 \; 1000 \$1-ts 02:25
+\; 1000 \$1-ts 02:26 \; 1000 \$1-ts 02:27 \; \$1-d_flight BX_392 \;
+\$1-d_airline AIR_BUSAN \; \$1-d_loc 18 \; \$1-d_city Busan \; 1000
+\$1-ts 02:28 \; 1000 \$1-ts 02:29 \; 1000 \$1-ts 02:30 \; 1000 \$1-ts
+02:31 \; 1000 \$1-ts 02:32 \; 1000 \$1-ts 02:33 \; 1000 \$1-ts 02:34
+\; 1000 \$1-ts 02:35 \; 1000 \$1-ts 02:36 \; 1000 \$1-ts 02:37 \; \$1-d_flight
+JW_340 \; \$1-d_airline Vanilla_Air \; \$1-d_loc 17 \; \$1-d_city Tokyo/NRT
+\; 1000 \$1-ts 02:38 \; 1000 \$1-ts 02:39 \; 1000 \$1-ts 02:40 \; 1000
+\$1-ts 02:41 \; 1000 \$1-ts 02:42 \; 1000 \$1-ts 02:43 \; 1000 \$1-ts
+02:44 \; 1000 \$1-ts 02:45 \; 1000 \$1-ts 02:46 \; 1000 \$1-ts 02:47
+\; 1000 \$1-ts 02:48 \; 1000 \$1-ts 02:49 \; \$1-d_flight KA_318 \;
+\$1-d_airline Dragonair \; \$1-d_loc 20 \; \$1-d_city Busan \; 1000
+\$1-ts 02:50 \; 1000 \$1-ts 02:51 \; 1000 \$1-ts 02:52 \; 1000 \$1-ts
+02:53 \; \$1-d_flight LX_139 \; \$1-d_airline SWISS_International_Air_Lines
+\; \$1-d_loc 25 \; \$1-d_city Zurich \; 1000 \$1-ts 02:54 \; 1000 \$1-ts
+02:55 \; 1000 \$1-ts 02:56 \; 1000 \$1-ts 02:57 \; 1000 \$1-ts 02:58
+\; 1000 \$1-ts 02:59 \; 1000 \$1-ts 03:00 \; 1000 \$1-ts 03:01 \; 1000
+\$1-ts 03:02 \; 1000 \$1-ts 03:03 \; 1000 \$1-ts 03:04 \; 1000 \$1-ts
+03:05 \; 1000 \$1-ts 03:06 \; 1000 \$1-ts 03:07 \; 1000 \$1-ts 03:08
+\; 1000 \$1-ts 03:09 \; 1000 \$1-ts 03:10 \; 1000 \$1-ts 03:11 \; 1000
+\$1-ts 03:12 \; \$1-d_flight 7C_2108 \; \$1-d_airline JEJU_AIR \; \$1-d_loc
+21 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 03:13 \; 1000 \$1-ts 03:14
+\; 1000 \$1-ts 03:15 \; 1000 \$1-ts 03:16 \; 1000 \$1-ts 03:17 \; 1000
+\$1-ts 03:18 \; \$1-a_flight KA_111 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Dhaka \; 1000 \$1-ts 03:19 \; 1000 \$1-ts 03:20 \;
+1000 \$1-ts 03:21 \; 1000 \$1-ts 03:22 \; 1000 \$1-ts 03:23 \; 1000
+\$1-ts 03:24 \; 1000 \$1-ts 03:25 \; 1000 \$1-ts 03:26 \; 1000 \$1-ts
+03:27 \; 1000 \$1-ts 03:28 \; 1000 \$1-ts 03:29 \; 1000 \$1-ts 03:30
+\; 1000 \$1-ts 03:31 \; 1000 \$1-ts 03:32 \; 1000 \$1-ts 03:33 \; 1000
+\$1-ts 03:34 \; 1000 \$1-ts 03:35 \; 1000 \$1-ts 03:36 \; 1000 \$1-ts
+03:37 \; 1000 \$1-ts 03:38 \; 1000 \$1-ts 03:39 \; 1000 \$1-ts 03:40
+\; 1000 \$1-ts 03:41 \; 1000 \$1-ts 03:42 \; 1000 \$1-ts 03:43 \; 1000
+\$1-ts 03:44 \; 1000 \$1-ts 03:45 \; 1000 \$1-ts 03:46 \; 1000 \$1-ts
+03:47 \; 1000 \$1-ts 03:48 \; 1000 \$1-ts 03:49 \; 1000 \$1-ts 03:50
+\; 1000 \$1-ts 03:51 \; 1000 \$1-ts 03:52 \; 1000 \$1-ts 03:53 \; 1000
+\$1-ts 03:54 \; 1000 \$1-ts 03:55 \; 1000 \$1-ts 03:56 \; 1000 \$1-ts
+03:57 \; 1000 \$1-ts 03:58 \; 1000 \$1-ts 03:59 \; 1000 \$1-ts 04:00
+\; 1000 \$1-ts 04:01 \; 1000 \$1-ts 04:02 \; 1000 \$1-ts 04:03 \; 1000
+\$1-ts 04:04 \; 1000 \$1-ts 04:05 \; 1000 \$1-ts 04:06 \; 1000 \$1-ts
+04:07 \; 1000 \$1-ts 04:08 \; 1000 \$1-ts 04:09 \; \$1-a_flight CX_138
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Sydney
+\; 1000 \$1-ts 04:10 \; 1000 \$1-ts 04:11 \; 1000 \$1-ts 04:12 \; 1000
+\$1-ts 04:13 \; 1000 \$1-ts 04:14 \; 1000 \$1-ts 04:15 \; 1000 \$1-ts
+04:16 \; 1000 \$1-ts 04:17 \; 1000 \$1-ts 04:18 \; 1000 \$1-ts 04:19
+\; 1000 \$1-ts 04:20 \; 1000 \$1-ts 04:21 \; 1000 \$1-ts 04:22 \; 1000
+\$1-ts 04:23 \; 1000 \$1-ts 04:24 \; 1000 \$1-ts 04:25 \; 1000 \$1-ts
+04:26 \; 1000 \$1-ts 04:27 \; 1000 \$1-ts 04:28 \; 1000 \$1-ts 04:29
+\; 1000 \$1-ts 04:30 \; 1000 \$1-ts 04:31 \; 1000 \$1-ts 04:32 \; 1000
+\$1-ts 04:33 \; 1000 \$1-ts 04:34 \; \$1-a_flight UO_623 \; \$1-a_airline
+HK_Express \; \$1-a_loc B \; \$1-a_city Tokyo/HND \; 1000 \$1-ts 04:35
+\; 1000 \$1-ts 04:36 \; 1000 \$1-ts 04:37 \; 1000 \$1-ts 04:38 \; 1000
+\$1-ts 04:39 \; 1000 \$1-ts 04:40 \; 1000 \$1-ts 04:41 \; 1000 \$1-ts
+04:42 \; 1000 \$1-ts 04:43 \; 1000 \$1-ts 04:44 \; 1000 \$1-ts 04:45
+\; 1000 \$1-ts 04:46 \; 1000 \$1-ts 04:47 \; 1000 \$1-ts 04:48 \; 1000
+\$1-ts 04:49 \; 1000 \$1-ts 04:50 \; 1000 \$1-ts 04:51 \; 1000 \$1-ts
+04:52 \; 1000 \$1-ts 04:53 \; 1000 \$1-ts 04:54 \; 1000 \$1-ts 04:55
+\; 1000 \$1-ts 04:56 \; \$1-a_flight CX_706 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 04:57 \; 1000 \$1-ts
+04:58 \; 1000 \$1-ts 04:59 \; 1000 \$1-ts 05:00 \; 1000 \$1-ts 05:01
+\; 1000 \$1-ts 05:02 \; 1000 \$1-ts 05:03 \; 1000 \$1-ts 05:04 \; \$1-a_flight
+CX_714 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Singapore \; \$1-a_flight KA_397 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Tokyo/HND \; 1000 \$1-ts 05:05 \; 1000 \$1-ts 05:06
+\; 1000 \$1-ts 05:07 \; 1000 \$1-ts 05:08 \; 1000 \$1-ts 05:09 \; \$1-a_flight
+CX_845 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+New_York/JFK \; 1000 \$1-ts 05:10 \; 1000 \$1-ts 05:11 \; 1000 \$1-ts
+05:12 \; 1000 \$1-ts 05:13 \; 1000 \$1-ts 05:14 \; 1000 \$1-ts 05:15
+\; \$1-a_flight HX_762 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+B \; \$1-a_city Bangkok \; 1000 \$1-ts 05:16 \; 1000 \$1-ts 05:17 \;
+1000 \$1-ts 05:18 \; 1000 \$1-ts 05:19 \; 1000 \$1-ts 05:20 \; 1000
+\$1-ts 05:21 \; 1000 \$1-ts 05:22 \; 1000 \$1-ts 05:23 \; 1000 \$1-ts
+05:24 \; 1000 \$1-ts 05:25 \; 1000 \$1-ts 05:26 \; \$1-a_flight GA_876
+\; \$1-a_airline Garuda_Indonesia \; \$1-a_loc B \; \$1-a_city Jakarta
+\; 1000 \$1-ts 05:27 \; 1000 \$1-ts 05:28 \; 1000 \$1-ts 05:29 \; 1000
+\$1-ts 05:30 \; 1000 \$1-ts 05:31 \; 1000 \$1-ts 05:32 \; \$1-a_flight
+TZ_322 \; \$1-a_airline SCOOT \; \$1-a_loc B \; \$1-a_city Singapore
+\; 1000 \$1-ts 05:33 \; \$1-a_flight KA_251 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Yangon \; 1000 \$1-ts 05:34 \; 1000 \$1-ts
+05:35 \; 1000 \$1-ts 05:36 \; \$1-a_flight EK_386 \; \$1-a_airline
+Emirates \; \$1-a_loc B \; \$1-a_city Dubai \; 1000 \$1-ts 05:37 \;
+1000 \$1-ts 05:38 \; 1000 \$1-ts 05:39 \; \$1-a_flight HX_774 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts
+05:40 \; 1000 \$1-ts 05:41 \; 1000 \$1-ts 05:42 \; \$1-a_flight CX_746
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Bahrain
+\; 1000 \$1-ts 05:43 \; 1000 \$1-ts 05:44 \; 1000 \$1-ts 05:45 \; 1000
+\$1-ts 05:46 \; 1000 \$1-ts 05:47 \; \$1-a_flight CX_883 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Los_Angeles \; 1000 \$1-ts
+05:48 \; 1000 \$1-ts 05:49 \; 1000 \$1-ts 05:50 \; 1000 \$1-ts 05:51
+\; 1000 \$1-ts 05:52 \; 1000 \$1-ts 05:53 \; 1000 \$1-ts 05:54 \; 1000
+\$1-ts 05:55 \; 1000 \$1-ts 05:56 \; \$1-a_flight HX_708 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Denpasar \; 1000 \$1-ts
+05:57 \; 1000 \$1-ts 05:58 \; 1000 \$1-ts 05:59 \; 1000 \$1-ts 06:00
+\; 1000 \$1-ts 06:01 \; \$1-a_flight CX_829 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Toronto \; 1000 \$1-ts 06:02 \; \$1-a_flight
+CX_698 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Delhi \; 1000 \$1-ts 06:03 \; \$1-a_flight KA_997 \; \$1-a_airline
+Dragonair \; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts 06:04
+\; 1000 \$1-ts 06:05 \; 1000 \$1-ts 06:06 \; 1000 \$1-ts 06:07 \; 1000
+\$1-ts 06:08 \; 1000 \$1-ts 06:09 \; \$1-a_flight CX_382 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Zurich \; 1000 \$1-ts 06:10
+\; 1000 \$1-ts 06:11 \; \$1-a_flight NZ_087 \; \$1-a_airline AIR_NEW_ZEALAND
+\; \$1-a_loc A \; \$1-a_city Auckland \; 1000 \$1-ts 06:12 \; 1000
+\$1-ts 06:13 \; 1000 \$1-ts 06:14 \; 1000 \$1-ts 06:15 \; 1000 \$1-ts
+06:16 \; \$1-a_flight CX_234 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Milan/MXP \; 1000 \$1-ts 06:17 \; 1000 \$1-ts 06:18
+\; \$1-a_flight HX_6704 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+A \; \$1-a_city Denpasar \; 1000 \$1-ts 06:19 \; 1000 \$1-ts 06:20
+\; 1000 \$1-ts 06:21 \; \$1-a_flight CX_873 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city San_Francisco \; 1000 \$1-ts 06:22 \;
+1000 \$1-ts 06:23 \; 1000 \$1-ts 06:24 \; 1000 \$1-ts 06:25 \; 1000
+\$1-ts 06:26 \; 1000 \$1-ts 06:27 \; \$1-a_flight CX_899 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Newark \; \$1-a_flight
+CX_376 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Dusseldorf \; 1000 \$1-ts 06:28 \; 1000 \$1-ts 06:29 \; 1000 \$1-ts
+06:30 \; 1000 \$1-ts 06:31 \; \$1-a_flight SQ_001 \; \$1-a_airline
+Singapore_Airlines \; \$1-a_loc A \; \$1-a_city San_Francisco \; 1000
+\$1-ts 06:32 \; 1000 \$1-ts 06:33 \; 1000 \$1-ts 06:34 \; 1000 \$1-ts
+06:35 \; 1000 \$1-ts 06:36 \; 1000 \$1-ts 06:37 \; 1000 \$1-ts 06:38
+\; 1000 \$1-ts 06:39 \; 1000 \$1-ts 06:40 \; 1000 \$1-ts 06:41 \; 1000
+\$1-ts 06:42 \; \$1-a_flight CX_178 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Melbourne \; 1000 \$1-ts 06:43 \; 1000
+\$1-ts 06:44 \; 1000 \$1-ts 06:45 \; 1000 \$1-ts 06:46 \; \$1-a_flight
+UO_615 \; \$1-a_airline HK_Express \; \$1-a_loc A \; \$1-a_city Seoul/ICN
+\; 1000 \$1-ts 06:47 \; 1000 \$1-ts 06:48 \; \$1-a_flight KA_169 \;
+\$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Kolkata \; 1000
+\$1-ts 06:49 \; 1000 \$1-ts 06:50 \; 1000 \$1-ts 06:51 \; \$1-a_flight
+CX_889 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+New_York/JFK \; 1000 \$1-ts 06:52 \; 1000 \$1-ts 06:53 \; 1000 \$1-ts
+06:54 \; 1000 \$1-ts 06:55 \; \$1-d_flight UO_618 \; \$1-d_airline
+HK_Express \; \$1-d_loc 522 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts
+06:56 \; 1000 \$1-ts 06:57 \; 1000 \$1-ts 06:58 \; \$1-a_flight CX_288
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Frankfurt
+\; \$1-a_flight CX_904 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Manila \; 1000 \$1-ts 06:59 \; \$1-a_flight AI_310
+\; \$1-a_airline Air_India \; \$1-a_loc A \; \$1-a_city Mumbai \; 1000
+\$1-ts 07:00 \; \$1-d_flight TZ_321 \; \$1-d_airline SCOOT \; \$1-d_loc
+16 \; \$1-d_city Singapore \; 1000 \$1-ts 07:01 \; 1000 \$1-ts 07:02
+\; 1000 \$1-ts 07:03 \; \$1-a_flight CX_260 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Paris \; 1000 \$1-ts 07:04 \; 1000 \$1-ts
+07:05 \; \$1-a_flight UO_764 \; \$1-a_airline HK_Express \; \$1-a_loc
+A \; \$1-a_city Phuket \; 1000 \$1-ts 07:06 \; \$1-a_flight CX_748
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Johannesburg
+\; 1000 \$1-ts 07:07 \; 1000 \$1-ts 07:08 \; 1000 \$1-ts 07:09 \; 1000
+\$1-ts 07:10 \; 1000 \$1-ts 07:11 \; \$1-a_flight CX_252 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city London/LHR \; 1000 \$1-ts
+07:12 \; 1000 \$1-ts 07:13 \; 1000 \$1-ts 07:14 \; \$1-a_flight SK_963
+\; \$1-a_airline SCANDINAVIAN_AIRLINES \; \$1-a_loc A \; \$1-a_city
+Stockholm \; 1000 \$1-ts 07:15 \; 1000 \$1-ts 07:16 \; 1000 \$1-ts
+07:17 \; 1000 \$1-ts 07:18 \; 1000 \$1-ts 07:19 \; 1000 \$1-ts 07:20
+\; 1000 \$1-ts 07:21 \; \$1-d_flight HX_682 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 27 \; \$1-d_city Okinawa \; \$1-a_flight CX_881 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Los_Angeles \; 1000 \$1-ts
+07:22 \; \$1-d_flight MU_726 \; \$1-d_airline China_Eastern_Airlines
+\; \$1-d_loc 512 \; \$1-d_city Shanghai/PVG \; 1000 \$1-ts 07:23 \;
+1000 \$1-ts 07:24 \; \$1-a_flight CX_270 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Amsterdam \; 1000 \$1-ts 07:25 \; 1000
+\$1-ts 07:26 \; 1000 \$1-ts 07:27 \; 1000 \$1-ts 07:28 \; \$1-d_flight
+BR_828 \; \$1-d_airline EVA_Air \; \$1-d_loc 60 \; \$1-d_city Taipei
+\; 1000 \$1-ts 07:29 \; 1000 \$1-ts 07:30 \; 1000 \$1-ts 07:31 \; 1000
+\$1-ts 07:32 \; \$1-a_flight CX_156 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Brisbane \; 1000 \$1-ts 07:33 \; 1000
+\$1-ts 07:34 \; 1000 \$1-ts 07:35 \; \$1-d_flight EK_387 \; \$1-d_airline
+Emirates \; \$1-d_loc 32 \; \$1-d_city Dubai \; 1000 \$1-ts 07:36 \;
+1000 \$1-ts 07:37 \; \$1-a_flight CX_358 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Manchester \; 1000 \$1-ts 07:38 \; 1000
+\$1-ts 07:39 \; 1000 \$1-ts 07:40 \; 1000 \$1-ts 07:41 \; 1000 \$1-ts
+07:42 \; 1000 \$1-ts 07:43 \; 1000 \$1-ts 07:44 \; 1000 \$1-ts 07:45
+\; 1000 \$1-ts 07:46 \; 1000 \$1-ts 07:47 \; \$1-a_flight CX_463 \;
+\$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Taipei \;
+1000 \$1-ts 07:48 \; \$1-d_flight KA_626 \; \$1-d_airline Dragonair
+\; \$1-d_loc 35 \; \$1-d_city Hangzhou \; 1000 \$1-ts 07:49 \; 1000
+\$1-ts 07:50 \; 1000 \$1-ts 07:51 \; 1000 \$1-ts 07:52 \; \$1-d_flight
+CX_562 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 50 \; \$1-d_city
+Osaka/Kansai \; \$1-d_flight PR_313 \; \$1-d_airline Philippine_Airlines
+\; \$1-d_loc 509 \; \$1-d_city Manila \; \$1-a_flight 5J_108 \; \$1-a_airline
+Cebu_Pacific_Air \; \$1-a_loc A \; \$1-a_city Manila \; 1000 \$1-ts
+07:53 \; 1000 \$1-ts 07:54 \; \$1-d_flight HX_336 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 523 \; \$1-d_city Beijing \; \$1-d_flight
+HX_771 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 31 \; \$1-d_city
+Bangkok \; 1000 \$1-ts 07:55 \; \$1-d_flight UO_1600 \; \$1-d_airline
+HK_Express \; \$1-d_loc 505 \; \$1-d_city Fukuoka \; 1000 \$1-ts 07:56
+\; 1000 \$1-ts 07:57 \; \$1-d_flight AI_310 \; \$1-d_airline Air_India
+\; \$1-d_loc 41 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 07:58 \; 1000
+\$1-ts 07:59 \; \$1-d_flight SQ_001 \; \$1-d_airline Singapore_Airlines
+\; \$1-d_loc 18 \; \$1-d_city Singapore \; 1000 \$1-ts 08:00 \; \$1-d_flight
+CI_678 \; \$1-d_airline China_Airlines \; \$1-d_loc 40 \; \$1-d_city
+Taipei \; 1000 \$1-ts 08:01 \; 1000 \$1-ts 08:02 \; 1000 \$1-ts 08:03
+\; \$1-d_flight KA_900 \; \$1-d_airline Dragonair \; \$1-d_loc 22 \;
+\$1-d_city Beijing \; 1000 \$1-ts 08:04 \; 1000 \$1-ts 08:05 \; \$1-d_flight
+KA_782 \; \$1-d_airline Dragonair \; \$1-d_loc 66 \; \$1-d_city Guangzhou
+\; 1000 \$1-ts 08:06 \; 1000 \$1-ts 08:07 \; \$1-d_flight TG_603 \;
+\$1-d_airline Thai_Airways \; \$1-d_loc 48 \; \$1-d_city Bangkok \;
+\$1-d_flight CX_691 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 2
+\; \$1-d_city Singapore \; \$1-d_flight KA_232 \; \$1-d_airline Dragonair
+\; \$1-d_loc 513 \; \$1-d_city Chiang_Mai \; 1000 \$1-ts 08:08 \; \$1-d_flight
+CX_907 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 25 \; \$1-d_city
+Manila \; 1000 \$1-ts 08:09 \; \$1-d_flight CX_596 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 42 \; \$1-d_city Osaka/Kansai \; 1000 \$1-ts
+08:10 \; 1000 \$1-ts 08:11 \; 1000 \$1-ts 08:12 \; \$1-d_flight KA_802
+\; \$1-d_airline Dragonair \; \$1-d_loc 70 \; \$1-d_city Shanghai/PVG
+\; \$1-d_flight UO_656 \; \$1-d_airline HK_Express \; \$1-d_loc 522
+\; \$1-d_city Nagoya \; 1000 \$1-ts 08:13 \; 1000 \$1-ts 08:14 \; 1000
+\$1-ts 08:15 \; 1000 \$1-ts 08:16 \; \$1-a_flight HX_756 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Krabi \; 1000 \$1-ts
+08:17 \; 1000 \$1-ts 08:18 \; 1000 \$1-ts 08:19 \; \$1-d_flight CX_438
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 68 \; \$1-d_city Seoul/ICN
+\; 1000 \$1-ts 08:20 \; 1000 \$1-ts 08:21 \; \$1-d_flight OX_203 \;
+\$1-d_airline ORIENT_THAI \; \$1-d_loc 49 \; \$1-d_city Bangkok \;
+\$1-a_flight CX_610 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B
+\; \$1-a_city Colombo \; 1000 \$1-ts 08:22 \; 1000 \$1-ts 08:23 \;
+1000 \$1-ts 08:24 \; 1000 \$1-ts 08:25 \; \$1-d_flight KA_248 \; \$1-d_airline
+Dragonair \; \$1-d_loc 521 \; \$1-d_city Siem_Reap \; 1000 \$1-ts 08:26
+\; 1000 \$1-ts 08:27 \; 1000 \$1-ts 08:28 \; 1000 \$1-ts 08:29 \; 1000
+\$1-ts 08:30 \; 1000 \$1-ts 08:31 \; \$1-d_flight 5J_109 \; \$1-d_airline
+Cebu_Pacific_Air \; \$1-d_loc 47 \; \$1-d_city Manila \; 1000 \$1-ts
+08:32 \; 1000 \$1-ts 08:33 \; 1000 \$1-ts 08:34 \; 1000 \$1-ts 08:35
+\; \$1-a_flight KC_929 \; \$1-a_airline Air_Astana \; \$1-a_loc B \;
+\$1-a_city Almaty \; 1000 \$1-ts 08:36 \; 1000 \$1-ts 08:37 \; 1000
+\$1-ts 08:38 \; 1000 \$1-ts 08:39 \; 1000 \$1-ts 08:40 \; \$1-d_flight
+CX_548 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 1 \; \$1-d_city
+Tokyo/HND \; \$1-a_flight CX_170 \; \$1-a_airline Cathay_Pacific \;
+\$1-a_loc B \; \$1-a_city Perth \; 1000 \$1-ts 08:41 \; \$1-d_flight
+CX_474 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 69 \; \$1-d_city
+Taipei \; 1000 \$1-ts 08:42 \; 1000 \$1-ts 08:43 \; \$1-d_flight KA_852
+\; \$1-d_airline Dragonair \; \$1-d_loc 524 \; \$1-d_city Wuhan \;
+\$1-d_flight CX_767 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 24
+\; \$1-d_city Ho_Chi_Minh \; 1000 \$1-ts 08:44 \; \$1-d_flight CX_368
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 34 \; \$1-d_city Shanghai/PVG
+\; 1000 \$1-ts 08:45 \; \$1-a_flight 5J_150 \; \$1-a_airline Cebu_Pacific_Air
+\; \$1-a_loc A \; \$1-a_city Clark \; 1000 \$1-ts 08:46 \; 1000 \$1-ts
+08:47 \; 1000 \$1-ts 08:48 \; 1000 \$1-ts 08:49 \; 1000 \$1-ts 08:50
+\; \$1-d_flight KA_650 \; \$1-d_airline Dragonair \; \$1-d_loc 508
+\; \$1-d_city Sanya \; \$1-d_flight CX_723 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 45 \; \$1-d_city Kuala_Lumpur \; 1000 \$1-ts 08:51 \;
+\$1-d_flight KA_432 \; \$1-d_airline Dragonair \; \$1-d_loc 44 \; \$1-d_city
+Kaohsiung \; 1000 \$1-ts 08:52 \; 1000 \$1-ts 08:53 \; 1000 \$1-ts
+08:54 \; 1000 \$1-ts 08:55 \; \$1-d_flight KA_798 \; \$1-d_airline
+Dragonair \; \$1-d_loc 502 \; \$1-d_city Wenzhou \; \$1-d_flight CX_705
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 21 \; \$1-d_city Bangkok
+\; \$1-d_flight KA_297 \; \$1-d_airline Dragonair \; \$1-d_loc 503
+\; \$1-d_city Hanoi \; \$1-a_flight 5J_240 \; \$1-a_airline Cebu_Pacific_Air
+\; \$1-a_loc A \; \$1-a_city Cebu \; 1000 \$1-ts 08:56 \; 1000 \$1-ts
+08:57 \; \$1-d_flight CA_118 \; \$1-d_airline Air_China \; \$1-d_loc
+512 \; \$1-d_city Beijing \; \$1-d_flight CX_139 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 19 \; \$1-d_city Sydney \; 1000 \$1-ts 08:58 \; \$1-a_flight
+CX_694 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Delhi \; 1000 \$1-ts 08:59 \; 1000 \$1-ts 09:00 \; \$1-d_flight CX_390
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 65 \; \$1-d_city Beijing
+\; \$1-a_flight BR_891 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city
+Taipei \; 1000 \$1-ts 09:01 \; 1000 \$1-ts 09:02 \; \$1-d_flight KA_660
+\; \$1-d_airline Dragonair \; \$1-d_loc 23 \; \$1-d_city Fuzhou \;
+\$1-d_flight MH_079 \; \$1-d_airline Malaysia_Airlines \; \$1-d_loc
+501 \; \$1-d_city Kuala_Lumpur \; 1000 \$1-ts 09:03 \; \$1-d_flight
+CX_504 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 30 \; \$1-d_city
+Tokyo/NRT \; \$1-a_flight AE_1819 \; \$1-a_airline Mandarin_Airlines
+\; \$1-a_loc B \; \$1-a_city Taichung \; 1000 \$1-ts 09:04 \; \$1-d_flight
+KA_212 \; \$1-d_airline Dragonair \; \$1-d_loc 510 \; \$1-d_city Phuket
+\; 1000 \$1-ts 09:05 \; \$1-d_flight GA_873 \; \$1-d_airline Garuda_Indonesia
+\; \$1-d_loc 20 \; \$1-d_city Jakarta \; 1000 \$1-ts 09:06 \; \$1-d_flight
+UO_1632 \; \$1-d_airline HK_Express \; \$1-d_loc 520 \; \$1-d_city
+Tokyo/NRT \; \$1-d_flight CX_530 \; \$1-d_airline Cathay_Pacific \;
+\$1-d_loc 29 \; \$1-d_city Taipei \; 1000 \$1-ts 09:07 \; \$1-d_flight
+CX_713 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 71 \; \$1-d_city
+Bangkok \; 1000 \$1-ts 09:08 \; \$1-d_flight UO_273 \; \$1-d_airline
+HK_Express \; \$1-d_loc 511 \; \$1-d_city Kunming \; 1000 \$1-ts 09:09
+\; \$1-d_flight HX_236 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc
+523 \; \$1-d_city Shanghai/PVG \; \$1-d_flight HX_252 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 43 \; \$1-d_city Taipei \; \$1-a_flight
+CX_465 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Taipei \; \$1-a_flight CI_933 \; \$1-a_airline China_Airlines \; \$1-a_loc
+B \; \$1-a_city Kaohsiung \; \$1-a_flight UA_180 \; \$1-a_airline United_Airlines
+\; \$1-a_loc A \; \$1-a_city Ho_Chi_Minh \; 1000 \$1-ts 09:10 \; \$1-d_flight
+CX_901 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 17 \; \$1-d_city
+Manila \; 1000 \$1-ts 09:11 \; 1000 \$1-ts 09:12 \; 1000 \$1-ts 09:13
+\; \$1-d_flight KA_486 \; \$1-d_airline Dragonair \; \$1-d_loc 504
+\; \$1-d_city Taipei \; \$1-a_flight EY_834 \; \$1-a_airline ETIHAD_AIRWAYS
+\; \$1-a_loc A \; \$1-a_city Abu_Dhabi \; 1000 \$1-ts 09:14 \; 1000
+\$1-ts 09:15 \; \$1-a_flight AK_237 \; \$1-a_airline AirAsia \; \$1-a_loc
+A \; \$1-a_city Kota_Kinabalu \; 1000 \$1-ts 09:16 \; 1000 \$1-ts 09:17
+\; 1000 \$1-ts 09:18 \; \$1-d_flight SQ_857 \; \$1-d_airline Singapore_Airlines
+\; \$1-d_loc 16 \; \$1-d_city Singapore \; \$1-a_flight CI_601 \; \$1-a_airline
+China_Airlines \; \$1-a_loc B \; \$1-a_city Taipei \; 1000 \$1-ts 09:19
+\; \$1-d_flight PG_876 \; \$1-d_airline Bangkok_Airways \; \$1-d_loc
+506 \; \$1-d_city Samui \; 1000 \$1-ts 09:20 \; \$1-d_flight SK_964
+\; \$1-d_airline SCANDINAVIAN_AIRLINES \; \$1-d_loc 36 \; \$1-d_city
+Stockholm \; \$1-a_flight 5J_110 \; \$1-a_airline Cebu_Pacific_Air
+\; \$1-a_loc A \; \$1-a_city Manila \; 1000 \$1-ts 09:21 \; 1000 \$1-ts
+09:22 \; 1000 \$1-ts 09:23 \; 1000 \$1-ts 09:24 \; \$1-a_flight KA_451
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Kaohsiung \;
+\$1-a_flight UA_896 \; \$1-a_airline United_Airlines \; \$1-a_loc A
+\; \$1-a_city Singapore \; 1000 \$1-ts 09:25 \; \$1-d_flight KA_864
+\; \$1-d_airline Dragonair \; \$1-d_loc 513 \; \$1-d_city Shanghai/PVG
+\; \$1-d_flight UO_1686 \; \$1-d_airline HK_Express \; \$1-d_loc 507
+\; \$1-d_city Osaka/Kansai \; \$1-a_flight 9W_078 \; \$1-a_airline
+Jet_Airways \; \$1-a_loc B \; \$1-a_city Delhi \; 1000 \$1-ts 09:26
+\; \$1-d_flight UO_2355 \; \$1-d_airline HK_Express \; \$1-d_loc 522
+\; \$1-d_city Lanzhou \; 1000 \$1-ts 09:27 \; 1000 \$1-ts 09:28 \;
+1000 \$1-ts 09:29 \; 1000 \$1-ts 09:30 \; \$1-a_flight KA_617 \; \$1-a_airline
+Dragonair \; \$1-a_loc A \; \$1-a_city Xiamen \; 1000 \$1-ts 09:31
+\; \$1-d_flight VN_599 \; \$1-d_airline Vietnam_Airlines \; \$1-d_loc
+0 \; \$1-d_city Ho_Chi_Minh \; \$1-a_flight FD_515 \; \$1-a_airline
+Thai_AirAsia \; \$1-a_loc A \; \$1-a_city Chiang_Mai \; 1000 \$1-ts
+09:32 \; \$1-d_flight CX_410 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+32 \; \$1-d_city Seoul/ICN \; \$1-d_flight UO_673 \; \$1-d_airline
+HK_Express \; \$1-d_loc 521 \; \$1-d_city Busan \; \$1-d_flight MU_724
+\; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 509 \; \$1-d_city
+Shanghai/PVG \; \$1-a_flight CX_602 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Male \; 1000 \$1-ts 09:33 \; 1000 \$1-ts
+09:34 \; 1000 \$1-ts 09:35 \; 1000 \$1-ts 09:36 \; 1000 \$1-ts 09:37
+\; 1000 \$1-ts 09:38 \; 1000 \$1-ts 09:39 \; \$1-a_flight 9W_076 \;
+\$1-a_airline Jet_Airways \; \$1-a_loc B \; \$1-a_city Mumbai \; 1000
+\$1-ts 09:40 \; \$1-a_flight TR_2062 \; \$1-a_airline Tigerair \; \$1-a_loc
+A \; \$1-a_city Singapore \; 1000 \$1-ts 09:41 \; 1000 \$1-ts 09:42
+\; \$1-a_flight CX_660 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Mumbai \; \$1-a_flight KA_495 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Taichung \; 1000 \$1-ts 09:43 \; 1000
+\$1-ts 09:44 \; \$1-d_flight CX_830 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 3 \; \$1-d_city New_York/JFK \; \$1-d_flight KC_930 \;
+\$1-d_airline Air_Astana \; \$1-d_loc 22 \; \$1-d_city Almaty \; 1000
+\$1-ts 09:45 \; \$1-d_flight 5J_149 \; \$1-d_airline Cebu_Pacific_Air
+\; \$1-d_loc 28 \; \$1-d_city Clark \; \$1-a_flight KA_857 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts
+09:46 \; 1000 \$1-ts 09:47 \; 1000 \$1-ts 09:48 \; \$1-a_flight KA_153
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Bangalore \;
+\$1-a_flight CX_616 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B
+\; \$1-a_city Bangkok \; 1000 \$1-ts 09:49 \; \$1-d_flight CX_759 \;
+\$1-d_airline Cathay_Pacific \; \$1-d_loc 70 \; \$1-d_city Singapore
+\; 1000 \$1-ts 09:50 \; 1000 \$1-ts 09:51 \; \$1-d_flight DL_274 \;
+\$1-d_airline Delta_Air_Lines \; \$1-d_loc 27 \; \$1-d_city Tokyo/NRT
+\; 1000 \$1-ts 09:52 \; \$1-a_flight ZH_9041 \; \$1-a_airline Shenzhen_Airlines
+\; \$1-a_loc A \; \$1-a_city Jinjiang \; 1000 \$1-ts 09:53 \; \$1-d_flight
+CX_257 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 33 \; \$1-d_city
+London/LHR \; \$1-d_flight 5J_241 \; \$1-d_airline Cebu_Pacific_Air
+\; \$1-d_loc 508 \; \$1-d_city Cebu \; \$1-d_flight AK_236 \; \$1-d_airline
+AirAsia \; \$1-d_loc 20 \; \$1-d_city Kota_Kinabalu \; 1000 \$1-ts
+09:54 \; 1000 \$1-ts 09:55 \; \$1-d_flight BR_892 \; \$1-d_airline
+EVA_Air \; \$1-d_loc 40 \; \$1-d_city Taipei \; 1000 \$1-ts 09:56 \;
+\$1-a_flight UO_875 \; \$1-a_airline HK_Express \; \$1-a_loc B \; \$1-a_city
+Osaka/Kansai \; 1000 \$1-ts 09:57 \; 1000 \$1-ts 09:58 \; \$1-a_flight
+CI_903 \; \$1-a_airline China_Airlines \; \$1-a_loc B \; \$1-a_city
+Taipei \; \$1-a_flight AK_138 \; \$1-a_airline AirAsia \; \$1-a_loc
+A \; \$1-a_city Kuala_Lumpur \; 1000 \$1-ts 09:59 \; \$1-d_flight NH_812
+\; \$1-d_airline All_Nippon_Airways \; \$1-d_loc 60 \; \$1-d_city Tokyo/NRT
+\; 1000 \$1-ts 10:00 \; \$1-d_flight KA_858 \; \$1-d_airline Dragonair
+\; \$1-d_loc 31 \; \$1-d_city Shanghai/SHA \; 1000 \$1-ts 10:01 \;
+\$1-d_flight CX_450 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 25
+\; \$1-d_city Taipei \; \$1-d_flight CX_615 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 48 \; \$1-d_city Bangkok \; 1000 \$1-ts 10:02 \; \$1-d_flight
+KA_618 \; \$1-d_airline Dragonair \; \$1-d_loc 26 \; \$1-d_city Xiamen
+\; 1000 \$1-ts 10:03 \; 1000 \$1-ts 10:04 \; \$1-a_flight HX_285 \;
+\$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Taipei
+\; 1000 \$1-ts 10:05 \; \$1-a_flight CZ_8377 \; \$1-a_airline China_Southern
+\; \$1-a_loc A \; \$1-a_city JieyangChaoshan \; 1000 \$1-ts 10:06 \;
+\$1-a_flight PR_300 \; \$1-a_airline Philippine_Airlines \; \$1-a_loc
+A \; \$1-a_city Manila \; 1000 \$1-ts 10:07 \; \$1-d_flight KA_876
+\; \$1-d_airline Dragonair \; \$1-d_loc 512 \; \$1-d_city Shanghai/PVG
+\; \$1-a_flight HX_174 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+A \; \$1-a_city Fuzhou \; 1000 \$1-ts 10:08 \; 1000 \$1-ts 10:09 \;
+\$1-d_flight CX_785 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 66
+\; \$1-d_city Denpasar \; 1000 \$1-ts 10:10 \; \$1-d_flight CX_777
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 47 \; \$1-d_city Jakarta
+\; \$1-a_flight BR_851 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city
+Taipei \; 1000 \$1-ts 10:11 \; 1000 \$1-ts 10:12 \; 1000 \$1-ts 10:13
+\; 1000 \$1-ts 10:14 \; \$1-d_flight CI_934 \; \$1-d_airline China_Airlines
+\; \$1-d_loc 23 \; \$1-d_city Kaohsiung \; \$1-a_flight SU_212 \; \$1-a_airline
+Aeroflot_Russian_Airlines \; \$1-a_loc A \; \$1-a_city Moscow \; 1000
+\$1-ts 10:15 \; \$1-a_flight CX_772 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Ho_Chi_Minh \; 1000 \$1-ts 10:16 \; 1000
+\$1-ts 10:17 \; \$1-a_flight HX_453 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc B \; \$1-a_city Chengdu \; 1000 \$1-ts 10:18 \; \$1-d_flight
+HX_2645 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 505 \; \$1-d_city
+Yonago \; \$1-d_flight TG_609 \; \$1-d_airline Thai_Airways \; \$1-d_loc
+42 \; \$1-d_city Phuket \; 1000 \$1-ts 10:19 \; 1000 \$1-ts 10:20 \;
+\$1-d_flight CI_7868 \; \$1-d_airline China_Airlines \; \$1-d_loc 525
+\; \$1-d_city Tainan \; \$1-a_flight FD_508 \; \$1-a_airline Thai_AirAsia
+\; \$1-a_loc A \; \$1-a_city Bangkok/DMK \; 1000 \$1-ts 10:21 \; 1000
+\$1-ts 10:22 \; \$1-a_flight HX_129 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc B \; \$1-a_city Hangzhou \; 1000 \$1-ts 10:23 \; \$1-d_flight
+KA_950 \; \$1-d_airline Dragonair \; \$1-d_loc 43 \; \$1-d_city Qingdao
+\; 1000 \$1-ts 10:24 \; \$1-d_flight CX_506 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 2 \; \$1-d_city Osaka/Kansai \; \$1-a_flight CZ_3075 \;
+\$1-a_airline China_Southern \; \$1-a_loc A \; \$1-a_city Wuhan \;
+\$1-a_flight KA_623 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city
+Hangzhou \; 1000 \$1-ts 10:25 \; \$1-d_flight CX_163 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 61 \; \$1-d_city Melbourne \; 1000 \$1-ts
+10:26 \; 1000 \$1-ts 10:27 \; \$1-a_flight HX_305 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts
+10:28 \; \$1-a_flight MU_765 \; \$1-a_airline China_Eastern_Airlines
+\; \$1-a_loc A \; \$1-a_city Nanjing \; 1000 \$1-ts 10:29 \; \$1-d_flight
+FD_516 \; \$1-d_airline Thai_AirAsia \; \$1-d_loc 36 \; \$1-d_city
+Chiang_Mai \; 1000 \$1-ts 10:30 \; \$1-a_flight AE_1817 \; \$1-a_airline
+Mandarin_Airlines \; \$1-a_loc B \; \$1-a_city Taichung \; 1000 \$1-ts
+10:31 \; \$1-d_flight KA_810 \; \$1-d_airline Dragonair \; \$1-d_loc
+35 \; \$1-d_city Nanjing \; 1000 \$1-ts 10:32 \; \$1-d_flight CI_602
+\; \$1-d_airline China_Airlines \; \$1-d_loc 18 \; \$1-d_city Taipei
+\; \$1-d_flight CA_108 \; \$1-d_airline Air_China \; \$1-d_loc 511
+\; \$1-d_city Beijing \; \$1-a_flight CZ_3073 \; \$1-a_airline China_Southern
+\; \$1-a_loc A \; \$1-a_city Zhengzhou \; 1000 \$1-ts 10:33 \; 1000
+\$1-ts 10:34 \; 1000 \$1-ts 10:35 \; \$1-a_flight KA_319 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Busan \; 1000 \$1-ts 10:36 \;
+\$1-a_flight MU_2901 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc
+A \; \$1-a_city Wuxi \; 1000 \$1-ts 10:37 \; 1000 \$1-ts 10:38 \; 1000
+\$1-ts 10:39 \; \$1-d_flight CX_828 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 64 \; \$1-d_city Toronto \; \$1-d_flight AK_139 \; \$1-d_airline
+AirAsia \; \$1-d_loc 34 \; \$1-d_city Kuala_Lumpur \; \$1-a_flight
+HX_497 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city
+Chongqing \; 1000 \$1-ts 10:40 \; \$1-a_flight CA_411 \; \$1-a_airline
+Air_China \; \$1-a_loc A \; \$1-a_city Chengdu \; 1000 \$1-ts 10:41
+\; 1000 \$1-ts 10:42 \; 1000 \$1-ts 10:43 \; \$1-a_flight HX_235 \;
+\$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 10:44 \; \$1-a_flight MU_785 \; \$1-a_airline China_Eastern_Airlines
+\; \$1-a_loc A \; \$1-a_city Jinan \; 1000 \$1-ts 10:45 \; 1000 \$1-ts
+10:46 \; \$1-d_flight CX_536 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+15 \; \$1-d_city Nagoya \; 1000 \$1-ts 10:47 \; 1000 \$1-ts 10:48 \;
+\$1-a_flight CX_650 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B
+\; \$1-a_city Singapore \; \$1-a_flight KA_643 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Ningbo \; 1000 \$1-ts 10:49 \; 1000 \$1-ts
+10:50 \; \$1-d_flight 5J_111 \; \$1-d_airline Cebu_Pacific_Air \; \$1-d_loc
+45 \; \$1-d_city Manila \; \$1-d_flight ZH_9042 \; \$1-d_airline Shenzhen_Airlines
+\; \$1-d_loc 506 \; \$1-d_city Jinjiang \; 1000 \$1-ts 10:51 \; 1000
+\$1-ts 10:52 \; 1000 \$1-ts 10:53 \; \$1-d_flight KA_820 \; \$1-d_airline
+Dragonair \; \$1-d_loc 3 \; \$1-d_city Chengdu \; 1000 \$1-ts 10:54
+\; \$1-a_flight CX_738 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Dubai \; 1000 \$1-ts 10:55 \; \$1-d_flight FD_509 \;
+\$1-d_airline Thai_AirAsia \; \$1-d_loc 62 \; \$1-d_city Bangkok/DMK
+\; \$1-d_flight HX_216 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc
+521 \; \$1-d_city Nanjing \; \$1-a_flight CX_912 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Manila \; 1000 \$1-ts 10:56 \; \$1-d_flight
+TR_2063 \; \$1-d_airline Tigerair \; \$1-d_loc 16 \; \$1-d_city Singapore
+\; 1000 \$1-ts 10:57 \; 1000 \$1-ts 10:58 \; 1000 \$1-ts 10:59 \; \$1-d_flight
+KA_440 \; \$1-d_airline Dragonair \; \$1-d_loc 502 \; \$1-d_city Kaohsiung
+\; 1000 \$1-ts 11:00 \; 1000 \$1-ts 11:01 \; \$1-a_flight CA_433 \;
+\$1-a_airline Air_China \; \$1-a_loc A \; \$1-a_city Chongqing \; 1000
+\$1-ts 11:02 \; \$1-d_flight HX_210 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 30 \; \$1-d_city Yancheng \; \$1-a_flight CX_648 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Riyadh \; 1000 \$1-ts 11:03
+\; \$1-d_flight CI_904 \; \$1-d_airline China_Airlines \; \$1-d_loc
+27 \; \$1-d_city Taipei \; 1000 \$1-ts 11:04 \; \$1-d_flight CX_520
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 44 \; \$1-d_city Tokyo/NRT
+\; \$1-a_flight CI_641 \; \$1-a_airline China_Airlines \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 11:05 \; 1000 \$1-ts 11:06 \;
+1000 \$1-ts 11:07 \; \$1-d_flight UA_180 \; \$1-d_airline United_Airlines
+\; \$1-d_loc 24 \; \$1-d_city Newark \; 1000 \$1-ts 11:08 \; \$1-d_flight
+CZ_8378 \; \$1-d_airline China_Southern \; \$1-d_loc 509 \; \$1-d_city
+JieyangChaoshan \; \$1-a_flight KA_825 \; \$1-a_airline Dragonair \;
+\$1-a_loc B \; \$1-a_city Chengdu \; \$1-a_flight CX_403 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Taipei \; 1000 \$1-ts 11:09
+\; \$1-a_flight KA_783 \; \$1-a_airline Dragonair \; \$1-a_loc B \;
+\$1-a_city Guangzhou \; 1000 \$1-ts 11:10 \; 1000 \$1-ts 11:11 \; \$1-d_flight
+HX_169 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 33 \; \$1-d_city
+Sanya \; 1000 \$1-ts 11:12 \; 1000 \$1-ts 11:13 \; 1000 \$1-ts 11:14
+\; \$1-d_flight UA_896 \; \$1-d_airline United_Airlines \; \$1-d_loc
+63 \; \$1-d_city Chicago \; 1000 \$1-ts 11:15 \; \$1-a_flight MF_8017
+\; \$1-a_airline Xiamen_Airlines \; \$1-a_loc A \; \$1-a_city Jinjiang
+\; 1000 \$1-ts 11:16 \; \$1-a_flight HO_1305 \; \$1-a_airline Juneyao_Airlines
+\; \$1-a_loc A \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 11:17 \; 1000
+\$1-ts 11:18 \; \$1-a_flight SQ_890 \; \$1-a_airline Singapore_Airlines
+\; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts 11:19 \; \$1-a_flight
+KA_871 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 11:20 \; \$1-d_flight BR_852 \; \$1-d_airline EVA_Air
+\; \$1-d_loc 32 \; \$1-d_city Taipei \; \$1-a_flight KA_937 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Beijing \; 1000 \$1-ts 11:21
+\; \$1-d_flight CA_412 \; \$1-d_airline Air_China \; \$1-d_loc 31 \;
+\$1-d_city Chengdu \; 1000 \$1-ts 11:22 \; \$1-d_flight PR_301 \; \$1-d_airline
+Philippine_Airlines \; \$1-d_loc 19 \; \$1-d_city Manila \; \$1-d_flight
+HX_352 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 513 \; \$1-d_city
+Guiyang \; \$1-a_flight CX_752 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Jakarta \; 1000 \$1-ts 11:23 \; \$1-a_flight KE_603
+\; \$1-a_airline Korean_Air \; \$1-a_loc A \; \$1-a_city Seoul/ICN
+\; 1000 \$1-ts 11:24 \; \$1-d_flight KA_380 \; \$1-d_airline Dragonair
+\; \$1-d_loc 520 \; \$1-d_city Fukuoka \; \$1-a_flight MK_640 \; \$1-a_airline
+Air_Mauritius \; \$1-a_loc A \; \$1-a_city Mauritius \; 1000 \$1-ts
+11:25 \; 1000 \$1-ts 11:26 \; \$1-d_flight JL_736 \; \$1-d_airline
+Japan_Airlines \; \$1-d_loc 0 \; \$1-d_city Tokyo/NRT \; 1000 \$1-ts
+11:27 \; 1000 \$1-ts 11:28 \; \$1-d_flight MU_766 \; \$1-d_airline
+China_Eastern_Airlines \; \$1-d_loc 66 \; \$1-d_city Nanjing \; 1000
+\$1-ts 11:29 \; \$1-a_flight KA_692 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Penang \; 1000 \$1-ts 11:30 \; \$1-d_flight UO_182
+\; \$1-d_airline HK_Express \; \$1-d_loc 523 \; \$1-d_city Taichung
+\; 1000 \$1-ts 11:31 \; 1000 \$1-ts 11:32 \; 1000 \$1-ts 11:33 \; 1000
+\$1-ts 11:34 \; \$1-d_flight HX_107 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 40 \; \$1-d_city Haikou \; \$1-a_flight KL_887 \; \$1-a_airline
+KLM_Royal_Dutch_Airlines \; \$1-a_loc A \; \$1-a_city Amsterdam \;
+1000 \$1-ts 11:35 \; \$1-d_flight AE_1818 \; \$1-d_airline Mandarin_Airlines
+\; \$1-d_loc 20 \; \$1-d_city Taichung \; 1000 \$1-ts 11:36 \; \$1-a_flight
+PR_318 \; \$1-a_airline Philippine_Airlines \; \$1-a_loc A \; \$1-a_city
+Manila \; 1000 \$1-ts 11:37 \; 1000 \$1-ts 11:38 \; \$1-a_flight MU_721
+\; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city
+Shanghai/SHA \; 1000 \$1-ts 11:39 \; 1000 \$1-ts 11:40 \; \$1-a_flight
+CA_101 \; \$1-a_airline Air_China \; \$1-a_loc A \; \$1-a_city Beijing
+\; 1000 \$1-ts 11:41 \; \$1-a_flight CX_415 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 11:42 \; \$1-d_flight
+KA_640 \; \$1-d_airline Dragonair \; \$1-d_loc 510 \; \$1-d_city Ningbo
+\; \$1-d_flight MU_2902 \; \$1-d_airline China_Eastern_Airlines \;
+\$1-d_loc 507 \; \$1-d_city Wuxi \; \$1-a_flight MM_063 \; \$1-a_airline
+Peach_Aviation \; \$1-a_loc A \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts
+11:43 \; 1000 \$1-ts 11:44 \; \$1-a_flight KA_905 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Beijing \; 1000 \$1-ts 11:45
+\; 1000 \$1-ts 11:46 \; \$1-a_flight MU_5089 \; \$1-a_airline China_Eastern_Airlines
+\; \$1-a_loc A \; \$1-a_city Taiyuan \; 1000 \$1-ts 11:47 \; \$1-d_flight
+KA_892 \; \$1-d_airline Dragonair \; \$1-d_loc 48 \; \$1-d_city Shanghai/PVG
+\; 1000 \$1-ts 11:48 \; \$1-a_flight TG_600 \; \$1-a_airline Thai_Airways
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 11:49 \; 1000 \$1-ts
+11:50 \; \$1-d_flight CZ_3076 \; \$1-d_airline China_Southern \; \$1-d_loc
+501 \; \$1-d_city Wuhan \; \$1-a_flight HX_221 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc A \; \$1-a_city Nanjing \; 1000 \$1-ts 11:51 \; \$1-d_flight
+CX_806 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 4 \; \$1-d_city
+Chicago \; \$1-a_flight KA_955 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Qingdao \; 1000 \$1-ts 11:52 \; 1000 \$1-ts 11:53 \;
+\$1-a_flight MF_381 \; \$1-a_airline Xiamen_Airlines \; \$1-a_loc A
+\; \$1-a_city Xiamen \; 1000 \$1-ts 11:54 \; \$1-d_flight KA_760 \;
+\$1-d_airline Dragonair \; \$1-d_loc 1 \; \$1-d_city Kunming \; 1000
+\$1-ts 11:55 \; \$1-d_flight CZ_3074 \; \$1-d_airline China_Southern
+\; \$1-d_loc 508 \; \$1-d_city Zhengzhou \; \$1-a_flight E8_326 \;
+\$1-a_airline City_Airways \; \$1-a_loc A \; \$1-a_city Bangkok/DMK
+\; 1000 \$1-ts 11:56 \; 1000 \$1-ts 11:57 \; \$1-d_flight HX_690 \;
+\$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 522 \; \$1-d_city Sapporo
+\; 1000 \$1-ts 11:58 \; \$1-d_flight HO_1306 \; \$1-d_airline Juneyao_Airlines
+\; \$1-d_loc 504 \; \$1-d_city Shanghai/PVG \; 1000 \$1-ts 11:59 \;
+\$1-a_flight KA_863 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city
+Nanjing \; \$1-a_flight OZ_721 \; \$1-a_airline Asiana_Airlines \;
+\$1-a_loc A \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 12:00 \; 1000 \$1-ts
+12:01 \; \$1-d_flight HX_658 \; \$1-d_airline Hong_Kong_Airlines \;
+\$1-d_loc 17 \; \$1-d_city Okinawa \; 1000 \$1-ts 12:02 \; \$1-d_flight
+CI_642 \; \$1-d_airline China_Airlines \; \$1-d_loc 21 \; \$1-d_city
+Taipei \; \$1-d_flight 9W_077 \; \$1-d_airline Jet_Airways \; \$1-d_loc
+41 \; \$1-d_city Delhi \; 1000 \$1-ts 12:03 \; \$1-a_flight KA_831
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 12:04 \; 1000 \$1-ts 12:05 \; 1000 \$1-ts 12:06 \; 1000
+\$1-ts 12:07 \; \$1-d_flight CX_739 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 23 \; \$1-d_city Singapore \; \$1-d_flight SU_213 \; \$1-d_airline
+Aeroflot_Russian_Airlines \; \$1-d_loc 22 \; \$1-d_city Moscow \; 1000
+\$1-ts 12:08 \; \$1-a_flight CX_700 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc A \; \$1-a_city Bangkok \; \$1-a_flight AK_134 \; \$1-a_airline
+AirAsia \; \$1-a_loc A \; \$1-a_city Kuala_Lumpur \; 1000 \$1-ts 12:09
+\; 1000 \$1-ts 12:10 \; \$1-d_flight CX_239 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 60 \; \$1-d_city London/LHR \; 1000 \$1-ts 12:11 \; 1000
+\$1-ts 12:12 \; \$1-a_flight SQ_860 \; \$1-a_airline Singapore_Airlines
+\; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts 12:13 \; 1000
+\$1-ts 12:14 \; \$1-d_flight KA_490 \; \$1-d_airline Dragonair \; \$1-d_loc
+521 \; \$1-d_city Taichung \; 1000 \$1-ts 12:15 \; \$1-d_flight KA_946
+\; \$1-d_airline Dragonair \; \$1-d_loc 25 \; \$1-d_city Xian \; \$1-a_flight
+BR_867 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city Taipei
+\; \$1-a_flight CI_680 \; \$1-a_airline China_Airlines \; \$1-a_loc
+B \; \$1-a_city Jakarta \; \$1-a_flight LJ_113 \; \$1-a_airline Jin_Air
+\; \$1-a_loc A \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 12:16 \; \$1-d_flight
+KA_908 \; \$1-d_airline Dragonair \; \$1-d_loc 35 \; \$1-d_city Beijing
+\; 1000 \$1-ts 12:17 \; 1000 \$1-ts 12:18 \; \$1-d_flight CX_406 \;
+\$1-d_airline Cathay_Pacific \; \$1-d_loc 68 \; \$1-d_city Taipei \;
+\$1-a_flight OM_297 \; \$1-a_airline MIAT_Mongolian_Airlines \; \$1-a_loc
+A \; \$1-a_city Ulaan_Baatar \; 1000 \$1-ts 12:19 \; \$1-a_flight ZE_931
+\; \$1-a_airline EASTAR_JET \; \$1-a_loc A \; \$1-a_city Seoul/ICN
+\; 1000 \$1-ts 12:20 \; \$1-d_flight CA_434 \; \$1-d_airline Air_China
+\; \$1-d_loc 503 \; \$1-d_city Chongqing \; 1000 \$1-ts 12:21 \; \$1-a_flight
+CZ_310 \; \$1-a_airline China_Southern \; \$1-a_loc A \; \$1-a_city
+Beijing \; 1000 \$1-ts 12:22 \; 1000 \$1-ts 12:23 \; \$1-a_flight MU_501
+\; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city
+Shanghai/PVG \; 1000 \$1-ts 12:24 \; \$1-d_flight HX_254 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 29 \; \$1-d_city Taipei \; 1000 \$1-ts
+12:25 \; \$1-d_flight MF_8018 \; \$1-d_airline Xiamen_Airlines \; \$1-d_loc
+513 \; \$1-d_city Jinjiang \; 1000 \$1-ts 12:26 \; \$1-d_flight MU_722
+\; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 66 \; \$1-d_city
+Shanghai/SHA \; \$1-d_flight MU_786 \; \$1-d_airline China_Eastern_Airlines
+\; \$1-d_loc 505 \; \$1-d_city Jinan \; 1000 \$1-ts 12:27 \; \$1-d_flight
+KA_804 \; \$1-d_airline Dragonair \; \$1-d_loc 43 \; \$1-d_city Shanghai/PVG
+\; \$1-a_flight CX_469 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 12:28 \; \$1-a_flight AE_293
+\; \$1-a_airline Mandarin_Airlines \; \$1-a_loc B \; \$1-a_city Kaohsiung
+\; 1000 \$1-ts 12:29 \; \$1-d_flight CX_653 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 49 \; \$1-d_city Bangkok \; \$1-d_flight KE_604 \; \$1-d_airline
+Korean_Air \; \$1-d_loc 16 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 12:30
+\; 1000 \$1-ts 12:31 \; 1000 \$1-ts 12:32 \; 1000 \$1-ts 12:33 \; \$1-a_flight
+CX_365 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Shanghai/PVG \; 1000 \$1-ts 12:34 \; \$1-a_flight CX_567 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts
+12:35 \; 1000 \$1-ts 12:36 \; \$1-d_flight HX_707 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 65 \; \$1-d_city Denpasar \; \$1-d_flight
+HX_775 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 523 \; \$1-d_city
+Bangkok \; \$1-d_flight SQ_891 \; \$1-d_airline Singapore_Airlines
+\; \$1-d_loc 18 \; \$1-d_city Singapore \; 1000 \$1-ts 12:37 \; \$1-a_flight
+CA_103 \; \$1-a_airline Air_China \; \$1-a_loc A \; \$1-a_city Tianjin
+\; 1000 \$1-ts 12:38 \; \$1-d_flight MU_5090 \; \$1-d_airline China_Eastern_Airlines
+\; \$1-d_loc 20 \; \$1-d_city Taiyuan \; \$1-a_flight CX_710 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Singapore \; 1000 \$1-ts
+12:39 \; 1000 \$1-ts 12:40 \; \$1-d_flight KA_740 \; \$1-d_airline
+Dragonair \; \$1-d_loc 34 \; \$1-d_city Zhengzhou \; 1000 \$1-ts 12:41
+\; \$1-d_flight MF_382 \; \$1-d_airline Xiamen_Airlines \; \$1-d_loc
+501 \; \$1-d_city Xiamen \; 1000 \$1-ts 12:42 \; 1000 \$1-ts 12:43
+\; \$1-d_flight MM_064 \; \$1-d_airline Peach_Aviation \; \$1-d_loc
+506 \; \$1-d_city Osaka/Kansai \; 1000 \$1-ts 12:44 \; 1000 \$1-ts
+12:45 \; \$1-a_flight KA_433 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Kaohsiung \; 1000 \$1-ts 12:46 \; \$1-d_flight CA_102
+\; \$1-d_airline Air_China \; \$1-d_loc 509 \; \$1-d_city Beijing \;
+\$1-d_flight CX_157 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 27
+\; \$1-d_city Brisbane \; 1000 \$1-ts 12:47 \; \$1-a_flight CX_720
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Kuala_Lumpur
+\; 1000 \$1-ts 12:48 \; \$1-d_flight HX_326 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 32 \; \$1-d_city Hohhot \; \$1-a_flight KA_651 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Sanya \; 1000 \$1-ts 12:49 \;
+\$1-d_flight KA_436 \; \$1-d_airline Dragonair \; \$1-d_loc 71 \; \$1-d_city
+Kaohsiung \; \$1-a_flight MU_767 \; \$1-a_airline China_Eastern_Airlines
+\; \$1-a_loc B \; \$1-a_city Shanghai/SHA \; 1000 \$1-ts 12:50 \; 1000
+\$1-ts 12:51 \; \$1-d_flight CX_725 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 26 \; \$1-d_city Kuala_Lumpur \; 1000 \$1-ts 12:52 \;
+\$1-d_flight UO_636 \; \$1-d_airline HK_Express \; \$1-d_loc 524 \;
+\$1-d_city Fukuoka \; \$1-a_flight HX_768 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 12:53 \; 1000 \$1-ts
+12:54 \; 1000 \$1-ts 12:55 \; \$1-d_flight E8_245 \; \$1-d_airline
+City_Airways \; \$1-d_loc 510 \; \$1-d_city Phuket \; 1000 \$1-ts 12:56
+\; \$1-a_flight 9C_8921 \; \$1-a_airline Spring_Airlines \; \$1-a_loc
+A \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 12:57 \; \$1-a_flight NH_859
+\; \$1-a_airline All_Nippon_Airways \; \$1-a_loc A \; \$1-a_city Tokyo/HND
+\; 1000 \$1-ts 12:58 \; 1000 \$1-ts 12:59 \; \$1-d_flight KA_620 \;
+\$1-d_airline Dragonair \; \$1-d_loc 70 \; \$1-d_city Hangzhou \; 1000
+\$1-ts 13:00 \; 1000 \$1-ts 13:01 \; \$1-a_flight OZ_723 \; \$1-a_airline
+Asiana_Airlines \; \$1-a_loc A \; \$1-a_city Seoul/ICN \; \$1-a_flight
+CX_238 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+London/LHR \; 1000 \$1-ts 13:02 \; 1000 \$1-ts 13:03 \; 1000 \$1-ts
+13:04 \; \$1-d_flight HX_246 \; \$1-d_airline Hong_Kong_Airlines \;
+\$1-d_loc 522 \; \$1-d_city Shanghai/PVG \; 1000 \$1-ts 13:05 \; 1000
+\$1-ts 13:06 \; \$1-d_flight CX_564 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 45 \; \$1-d_city Taipei \; \$1-a_flight UB_8027 \; \$1-a_airline
+Myanmar_National_Airlines \; \$1-a_loc A \; \$1-a_city Yangon \; \$1-a_flight
+MU_701 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city
+Shanghai/PVG \; 1000 \$1-ts 13:07 \; \$1-d_flight UA_862 \; \$1-d_airline
+United_Airlines \; \$1-d_loc 61 \; \$1-d_city San_Francisco \; 1000
+\$1-ts 13:08 \; \$1-a_flight CX_503 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts 13:09 \; \$1-a_flight
+CI_909 \; \$1-a_airline China_Airlines \; \$1-a_loc B \; \$1-a_city
+Taipei \; 1000 \$1-ts 13:10 \; 1000 \$1-ts 13:11 \; 1000 \$1-ts 13:12
+\; \$1-a_flight CX_475 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 13:13 \; \$1-a_flight CA_111
+\; \$1-a_airline Air_China \; \$1-a_loc A \; \$1-a_city Beijing \;
+1000 \$1-ts 13:14 \; \$1-d_flight AK_135 \; \$1-d_airline AirAsia \;
+\$1-d_loc 47 \; \$1-d_city Kuala_Lumpur \; \$1-a_flight 7C_2101 \;
+\$1-a_airline JEJU_AIR \; \$1-a_loc A \; \$1-a_city Seoul/ICN \; 1000
+\$1-ts 13:15 \; 1000 \$1-ts 13:16 \; \$1-d_flight CX_466 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 2 \; \$1-d_city Taipei \; 1000 \$1-ts 13:17
+\; \$1-d_flight UO_1628 \; \$1-d_airline HK_Express \; \$1-d_loc 523
+\; \$1-d_city Tokyo/NRT \; 1000 \$1-ts 13:18 \; 1000 \$1-ts 13:19 \;
+\$1-d_flight PR_319 \; \$1-d_airline Philippine_Airlines \; \$1-d_loc
+502 \; \$1-d_city Manila \; \$1-a_flight KA_627 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Hangzhou \; 1000 \$1-ts 13:20 \; \$1-d_flight
+OZ_722 \; \$1-d_airline Asiana_Airlines \; \$1-d_loc 24 \; \$1-d_city
+Seoul/ICN \; 1000 \$1-ts 13:21 \; 1000 \$1-ts 13:22 \; \$1-d_flight
+KA_375 \; \$1-d_airline Dragonair \; \$1-d_loc 511 \; \$1-d_city Clark
+\; \$1-d_flight CX_884 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+3 \; \$1-d_city Los_Angeles \; \$1-a_flight KA_661 \; \$1-a_airline
+Dragonair \; \$1-a_loc A \; \$1-a_city Fuzhou \; 1000 \$1-ts 13:23
+\; \$1-d_flight AE_294 \; \$1-d_airline Mandarin_Airlines \; \$1-d_loc
+525 \; \$1-d_city Kaohsiung \; \$1-a_flight NH_875 \; \$1-a_airline
+All_Nippon_Airways \; \$1-a_loc A \; \$1-a_city Nagoya \; 1000 \$1-ts
+13:24 \; \$1-a_flight VN_592 \; \$1-a_airline Vietnam_Airlines \; \$1-a_loc
+B \; \$1-a_city Hanoi \; 1000 \$1-ts 13:25 \; \$1-d_flight TG_601 \;
+\$1-d_airline Thai_Airways \; \$1-d_loc 64 \; \$1-d_city Bangkok \;
+1000 \$1-ts 13:26 \; \$1-d_flight KA_882 \; \$1-d_airline Dragonair
+\; \$1-d_loc 33 \; \$1-d_city Shanghai/SHA \; \$1-d_flight CI_680 \;
+\$1-d_airline China_Airlines \; \$1-d_loc 23 \; \$1-d_city Taipei \;
+1000 \$1-ts 13:27 \; \$1-a_flight CX_347 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Beijing \; 1000 \$1-ts 13:28 \; \$1-d_flight
+ZE_932 \; \$1-d_airline EASTAR_JET \; \$1-d_loc 508 \; \$1-d_city Seoul/ICN
+\; 1000 \$1-ts 13:29 \; 1000 \$1-ts 13:30 \; \$1-a_flight GK_021 \;
+\$1-a_airline Jetstar_Japan \; \$1-a_loc A \; \$1-a_city Tokyo/NRT
+\; 1000 \$1-ts 13:31 \; 1000 \$1-ts 13:32 \; \$1-d_flight OM_298 \;
+\$1-d_airline MIAT_Mongolian_Airlines \; \$1-d_loc 17 \; \$1-d_city
+Ulaan_Baatar \; \$1-a_flight ET_672 \; \$1-a_airline Ethiopian_Airlines
+\; \$1-a_loc A \; \$1-a_city Addis_Ababa \; 1000 \$1-ts 13:33 \; \$1-d_flight
+KA_639 \; \$1-d_airline Dragonair \; \$1-d_loc 521 \; \$1-d_city Penang
+\; \$1-d_flight KL_888 \; \$1-d_airline KLM_Royal_Dutch_Airlines \;
+\$1-d_loc 19 \; \$1-d_city Amsterdam \; 1000 \$1-ts 13:34 \; 1000 \$1-ts
+13:35 \; \$1-d_flight AA_138 \; \$1-d_airline American_Airlines \;
+\$1-d_loc 36 \; \$1-d_city Dallas_FT.Worth \; \$1-a_flight CX_509 \;
+\$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Tokyo/NRT
+\; \$1-a_flight KA_853 \; \$1-a_airline Dragonair \; \$1-a_loc A \;
+\$1-a_city Wuhan \; 1000 \$1-ts 13:36 \; \$1-d_flight CA_104 \; \$1-d_airline
+Air_China \; \$1-d_loc 29 \; \$1-d_city Tianjin \; \$1-a_flight HX_681
+\; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city Okinawa
+\; 1000 \$1-ts 13:37 \; \$1-d_flight BR_868 \; \$1-d_airline EVA_Air
+\; \$1-d_loc 62 \; \$1-d_city Taipei \; 1000 \$1-ts 13:38 \; \$1-a_flight
+MH_072 \; \$1-a_airline Malaysia_Airlines \; \$1-a_loc B \; \$1-a_city
+Kuala_Lumpur \; 1000 \$1-ts 13:39 \; \$1-a_flight KA_487 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Taipei \; \$1-a_flight ED_1167
+\; \$1-a_airline AIR_EXPLORE \; \$1-a_loc A \; \$1-a_city Koror \;
+1000 \$1-ts 13:40 \; 1000 \$1-ts 13:41 \; 1000 \$1-ts 13:42 \; \$1-a_flight
+KA_791 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Wenzhou
+\; 1000 \$1-ts 13:43 \; \$1-d_flight LJ_114 \; \$1-d_airline Jin_Air
+\; \$1-d_loc 31 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 13:44 \; 1000
+\$1-ts 13:45 \; \$1-a_flight KA_296 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Hanoi \; 1000 \$1-ts 13:46 \; \$1-d_flight KA_840 \;
+\$1-d_airline Dragonair \; \$1-d_loc 520 \; \$1-d_city Chongqing \;
+1000 \$1-ts 13:47 \; \$1-d_flight CZ_309 \; \$1-d_airline China_Southern
+\; \$1-d_loc 513 \; \$1-d_city Beijing \; 1000 \$1-ts 13:48 \; \$1-a_flight
+CX_250 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+London/LHR \; 1000 \$1-ts 13:49 \; \$1-d_flight KA_602 \; \$1-d_airline
+Dragonair \; \$1-d_loc 35 \; \$1-d_city Xiamen \; 1000 \$1-ts 13:50
+\; \$1-a_flight NH_873 \; \$1-a_airline All_Nippon_Airways \; \$1-a_loc
+A \; \$1-a_city Osaka/Kansai \; \$1-a_flight CX_174 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Adelaide \; 1000 \$1-ts
+13:51 \; 1000 \$1-ts 13:52 \; \$1-a_flight MU_203 \; \$1-a_airline
+China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city Xian \; \$1-a_flight
+TG_629 \; \$1-a_airline Thai_Airways \; \$1-a_loc A \; \$1-a_city Seoul/ICN
+\; 1000 \$1-ts 13:53 \; \$1-d_flight KA_992 \; \$1-d_airline Dragonair
+\; \$1-d_loc 44 \; \$1-d_city Beijing \; 1000 \$1-ts 13:54 \; \$1-a_flight
+BI_635 \; \$1-a_airline Royal_Brunei_Airlines \; \$1-a_loc A \; \$1-a_city
+B_S_Begawan \; 1000 \$1-ts 13:55 \; \$1-a_flight 3K_697 \; \$1-a_airline
+Jetstar_Asia_Airways \; \$1-a_loc A \; \$1-a_city Singapore \; 1000
+\$1-ts 13:56 \; 1000 \$1-ts 13:57 \; 1000 \$1-ts 13:58 \; 1000 \$1-ts
+13:59 \; \$1-a_flight HX_253 \; \$1-a_airline Hong_Kong_Airlines \;
+\$1-a_loc B \; \$1-a_city Taipei \; 1000 \$1-ts 14:00 \; \$1-a_flight
+CX_906 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Manila \; 1000 \$1-ts 14:01 \; 1000 \$1-ts 14:02 \; \$1-d_flight MU_502
+\; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 520 \; \$1-d_city
+Shanghai/PVG \; 1000 \$1-ts 14:03 \; 1000 \$1-ts 14:04 \; \$1-a_flight
+CX_417 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Seoul/ICN \; 1000 \$1-ts 14:05 \; \$1-a_flight CX_718 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Jakarta \; 1000 \$1-ts
+14:06 \; 1000 \$1-ts 14:07 \; 1000 \$1-ts 14:08 \; \$1-d_flight MU_768
+\; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 22 \; \$1-d_city
+Shanghai/SHA \; \$1-d_flight CX_420 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 40 \; \$1-d_city Taipei \; 1000 \$1-ts 14:09 \; \$1-a_flight
+CX_841 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+New_York/JFK \; \$1-a_flight TG_628 \; \$1-a_airline Thai_Airways \;
+\$1-a_loc A \; \$1-a_city Bangkok \; 1000 \$1-ts 14:10 \; \$1-d_flight
+7C_2102 \; \$1-d_airline JEJU_AIR \; \$1-d_loc 509 \; \$1-d_city Seoul/ICN
+\; \$1-a_flight CX_407 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 14:11 \; 1000 \$1-ts 14:12 \;
+1000 \$1-ts 14:13 \; \$1-a_flight SQ_856 \; \$1-a_airline Singapore_Airlines
+\; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts 14:14 \; 1000
+\$1-ts 14:15 \; 1000 \$1-ts 14:16 \; \$1-d_flight SQ_863 \; \$1-d_airline
+Singapore_Airlines \; \$1-d_loc 15 \; \$1-d_city Singapore \; \$1-a_flight
+KA_619 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Xiamen
+\; 1000 \$1-ts 14:17 \; \$1-d_flight UB_8028 \; \$1-d_airline Myanmar_National_Airlines
+\; \$1-d_loc 28 \; \$1-d_city Yangon \; \$1-a_flight JL_029 \; \$1-a_airline
+Japan_Airlines \; \$1-a_loc A \; \$1-a_city Tokyo/HND \; 1000 \$1-ts
+14:18 \; 1000 \$1-ts 14:19 \; \$1-d_flight CI_910 \; \$1-d_airline
+China_Airlines \; \$1-d_loc 21 \; \$1-d_city Taipei \; \$1-a_flight
+CX_780 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Surabaya \; 1000 \$1-ts 14:20 \; \$1-a_flight NH_809 \; \$1-a_airline
+All_Nippon_Airways \; \$1-a_loc A \; \$1-a_city Tokyo/NRT \; 1000 \$1-ts
+14:21 \; \$1-a_flight MU_507 \; \$1-a_airline China_Eastern_Airlines
+\; \$1-a_loc A \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 14:22 \; 1000
+\$1-ts 14:23 \; 1000 \$1-ts 14:24 \; 1000 \$1-ts 14:25 \; \$1-d_flight
+GK_022 \; \$1-d_airline Jetstar_Japan \; \$1-d_loc 20 \; \$1-d_city
+Tokyo/NRT \; 1000 \$1-ts 14:26 \; \$1-d_flight CA_112 \; \$1-d_airline
+Air_China \; \$1-d_loc 42 \; \$1-d_city Beijing \; 1000 \$1-ts 14:27
+\; \$1-a_flight CX_640 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Doha \; \$1-a_flight CX_790 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Kuala_Lumpur \; 1000 \$1-ts 14:28 \; \$1-d_flight
+CX_751 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 27 \; \$1-d_city
+Bangkok \; \$1-d_flight NH_876 \; \$1-d_airline All_Nippon_Airways
+\; \$1-d_loc 34 \; \$1-d_city Nagoya \; \$1-a_flight CX_736 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts
+14:29 \; 1000 \$1-ts 14:30 \; \$1-a_flight VN_594 \; \$1-a_airline
+Vietnam_Airlines \; \$1-a_loc B \; \$1-a_city Ho_Chi_Minh \; 1000 \$1-ts
+14:31 \; \$1-d_flight KA_704 \; \$1-d_airline Dragonair \; \$1-d_loc
+505 \; \$1-d_city Guilin \; 1000 \$1-ts 14:32 \; \$1-d_flight CX_870
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 4 \; \$1-d_city San_Francisco
+\; \$1-d_flight OZ_724 \; \$1-d_airline Asiana_Airlines \; \$1-d_loc
+16 \; \$1-d_city Seoul/ICN \; \$1-a_flight EK_382 \; \$1-a_airline
+Emirates \; \$1-a_loc B \; \$1-a_city Dubai \; 1000 \$1-ts 14:33 \;
+\$1-a_flight KE_613 \; \$1-a_airline Korean_Air \; \$1-a_loc A \; \$1-a_city
+Seoul/ICN \; 1000 \$1-ts 14:34 \; \$1-d_flight NH_860 \; \$1-d_airline
+All_Nippon_Airways \; \$1-d_loc 60 \; \$1-d_city Tokyo/HND \; 1000
+\$1-ts 14:35 \; \$1-d_flight CX_418 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 43 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 14:36 \; \$1-d_flight
+CX_919 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 45 \; \$1-d_city
+Manila \; 1000 \$1-ts 14:37 \; \$1-a_flight KA_249 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Siem_Reap \; 1000 \$1-ts 14:38
+\; \$1-d_flight VN_593 \; \$1-d_airline Vietnam_Airlines \; \$1-d_loc
+524 \; \$1-d_city Hanoi \; 1000 \$1-ts 14:39 \; 1000 \$1-ts 14:40 \;
+\$1-d_flight 9C_8922 \; \$1-d_airline Spring_Airlines \; \$1-d_loc
+507 \; \$1-d_city Shanghai/PVG \; \$1-a_flight CX_421 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Seoul/ICN \; 1000 \$1-ts
+14:41 \; 1000 \$1-ts 14:42 \; 1000 \$1-ts 14:43 \; \$1-a_flight KA_803
+\; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 14:44 \; \$1-a_flight UO_274 \; \$1-a_airline HK_Express
+\; \$1-a_loc B \; \$1-a_city Kunming \; 1000 \$1-ts 14:45 \; \$1-a_flight
+BR_869 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city Taipei
+\; \$1-a_flight AC_015 \; \$1-a_airline Air_Canada \; \$1-a_loc B \;
+\$1-a_city Toronto \; 1000 \$1-ts 14:46 \; \$1-d_flight MU_702 \; \$1-d_airline
+China_Eastern_Airlines \; \$1-d_loc 65 \; \$1-d_city Shanghai/PVG \;
+\$1-d_flight 3K_698 \; \$1-d_airline Jetstar_Asia_Airways \; \$1-d_loc
+512 \; \$1-d_city Singapore \; \$1-d_flight ET_672 \; \$1-d_airline
+Ethiopian_Airlines \; \$1-d_loc 24 \; \$1-d_city Tokyo/NRT \; 1000
+\$1-ts 14:47 \; 1000 \$1-ts 14:48 \; \$1-d_flight MH_073 \; \$1-d_airline
+Malaysia_Airlines \; \$1-d_loc 506 \; \$1-d_city Kuala_Lumpur \; 1000
+\$1-ts 14:49 \; 1000 \$1-ts 14:50 \; 1000 \$1-ts 14:51 \; \$1-a_flight
+KA_233 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Chiang_Mai
+\; \$1-a_flight CZ_3043 \; \$1-a_airline China_Southern \; \$1-a_loc
+A \; \$1-a_city Meixian \; 1000 \$1-ts 14:52 \; 1000 \$1-ts 14:53 \;
+\$1-d_flight ED_1168 \; \$1-d_airline AIR_EXPLORE \; \$1-d_loc 503
+\; \$1-d_city Koror \; \$1-a_flight HX_772 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 14:54 \; \$1-d_flight
+CX_360 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 69 \; \$1-d_city
+Shanghai/PVG \; \$1-d_flight KA_694 \; \$1-d_airline Dragonair \; \$1-d_loc
+504 \; \$1-d_city Haikou \; \$1-d_flight HX_312 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 521 \; \$1-d_city Beijing \; \$1-a_flight JW_343 \; \$1-a_airline
+Vanilla_Air \; \$1-a_loc A \; \$1-a_city Tokyo/NRT \; \$1-a_flight
+KA_441 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Kaohsiung
+\; 1000 \$1-ts 14:55 \; 1000 \$1-ts 14:56 \; \$1-d_flight MU_204 \;
+\$1-d_airline China_Eastern_Airlines \; \$1-d_loc 510 \; \$1-d_city
+Xian \; \$1-a_flight GA_856 \; \$1-a_airline Garuda_Indonesia \; \$1-a_loc
+A \; \$1-a_city Denpasar \; 1000 \$1-ts 14:57 \; 1000 \$1-ts 14:58
+\; \$1-d_flight BI_636 \; \$1-d_airline Royal_Brunei_Airlines \; \$1-d_loc
+502 \; \$1-d_city B_S_Begawan \; 1000 \$1-ts 14:59 \; \$1-d_flight
+TG_629 \; \$1-d_airline Thai_Airways \; \$1-d_loc 61 \; \$1-d_city
+Bangkok \; 1000 \$1-ts 15:00 \; \$1-d_flight KA_874 \; \$1-d_airline
+Dragonair \; \$1-d_loc 25 \; \$1-d_city Shanghai/PVG \; \$1-a_flight
+CX_501 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Tokyo/NRT \; 1000 \$1-ts 15:01 \; 1000 \$1-ts 15:02 \; 1000 \$1-ts
+15:03 \; \$1-a_flight CI_7867 \; \$1-a_airline China_Airlines \; \$1-a_loc
+B \; \$1-a_city Tainan \; \$1-a_flight HX_170 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc A \; \$1-a_city Sanya \; 1000 \$1-ts 15:04 \; \$1-d_flight
+KA_902 \; \$1-d_airline Dragonair \; \$1-d_loc 41 \; \$1-d_city Beijing
+\; \$1-a_flight HX_108 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+A \; \$1-a_city Haikou \; 1000 \$1-ts 15:05 \; \$1-a_flight CX_543
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc A \; \$1-a_city Tokyo/HND
+\; 1000 \$1-ts 15:06 \; 1000 \$1-ts 15:07 \; \$1-d_flight CX_510 \;
+\$1-d_airline Cathay_Pacific \; \$1-d_loc 48 \; \$1-d_city Taipei \;
+1000 \$1-ts 15:08 \; 1000 \$1-ts 15:09 \; \$1-d_flight CX_735 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 2 \; \$1-d_city Singapore \; \$1-d_flight
+KA_890 \; \$1-d_airline Dragonair \; \$1-d_loc 29 \; \$1-d_city Shanghai/PVG
+\; \$1-d_flight CX_253 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+30 \; \$1-d_city London/LHR \; 1000 \$1-ts 15:10 \; 1000 \$1-ts 15:11
+\; \$1-a_flight CX_511 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Fukuoka \; 1000 \$1-ts 15:12 \; 1000 \$1-ts 15:13 \;
+\$1-d_flight CX_171 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 71
+\; \$1-d_city Perth \; 1000 \$1-ts 15:14 \; \$1-a_flight CX_110 \;
+\$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Sydney \;
+1000 \$1-ts 15:15 \; \$1-a_flight CX_278 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Paris \; 1000 \$1-ts 15:16 \; \$1-d_flight
+MU_508 \; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 501 \;
+\$1-d_city Shanghai/PVG \; \$1-d_flight NH_874 \; \$1-d_airline All_Nippon_Airways
+\; \$1-d_loc 26 \; \$1-d_city Osaka/Kansai \; 1000 \$1-ts 15:17 \;
+1000 \$1-ts 15:18 \; 1000 \$1-ts 15:19 \; 1000 \$1-ts 15:20 \; 1000
+\$1-ts 15:21 \; 1000 \$1-ts 15:22 \; 1000 \$1-ts 15:23 \; \$1-d_flight
+HX_238 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 522 \; \$1-d_city
+Shanghai/SHA \; \$1-d_flight CX_500 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 64 \; \$1-d_city Tokyo/NRT \; \$1-a_flight ZH_9463 \;
+\$1-a_airline Shenzhen_Airlines \; \$1-a_loc A \; \$1-a_city Harbin
+\; \$1-a_flight UO_183 \; \$1-a_airline HK_Express \; \$1-a_loc A \;
+\$1-a_city Taichung \; 1000 \$1-ts 15:24 \; \$1-a_flight CX_766 \;
+\$1-a_airline Cathay_Pacific \; \$1-a_loc A \; \$1-a_city Ho_Chi_Minh
+\; 1000 \$1-ts 15:25 \; \$1-d_flight NH_810 \; \$1-d_airline All_Nippon_Airways
+\; \$1-d_loc 36 \; \$1-d_city Tokyo/NRT \; 1000 \$1-ts 15:26 \; 1000
+\$1-ts 15:27 \; \$1-d_flight VN_595 \; \$1-d_airline Vietnam_Airlines
+\; \$1-d_loc 50 \; \$1-d_city Ho_Chi_Minh \; 1000 \$1-ts 15:28 \; 1000
+\$1-ts 15:29 \; 1000 \$1-ts 15:30 \; 1000 \$1-ts 15:31 \; \$1-a_flight
+CX_900 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc A \; \$1-a_city
+Manila \; 1000 \$1-ts 15:32 \; \$1-d_flight KA_691 \; \$1-d_airline
+Dragonair \; \$1-d_loc 520 \; \$1-d_city Penang \; \$1-a_flight HX_237
+\; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 15:33 \; 1000 \$1-ts 15:34 \; 1000 \$1-ts 15:35 \; \$1-d_flight
+TG_628 \; \$1-d_airline Thai_Airways \; \$1-d_loc 47 \; \$1-d_city
+Seoul/ICN \; \$1-a_flight CX_134 \; \$1-a_airline Cathay_Pacific \;
+\$1-a_loc B \; \$1-a_city Melbourne \; 1000 \$1-ts 15:36 \; \$1-d_flight
+KA_214 \; \$1-d_airline Dragonair \; \$1-d_loc 508 \; \$1-d_city Phuket
+\; \$1-d_flight CX_117 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+68 \; \$1-d_city Auckland \; \$1-a_flight UO_619 \; \$1-a_airline HK_Express
+\; \$1-a_loc A \; \$1-a_city Seoul/ICN \; \$1-a_flight PG_805 \; \$1-a_airline
+Bangkok_Airways \; \$1-a_loc A \; \$1-a_city Samui \; 1000 \$1-ts 15:37
+\; \$1-a_flight CX_750 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Bangkok \; 1000 \$1-ts 15:38 \; \$1-d_flight JL_026
+\; \$1-d_airline Japan_Airlines \; \$1-d_loc 22 \; \$1-d_city Tokyo/HND
+\; 1000 \$1-ts 15:39 \; 1000 \$1-ts 15:40 \; 1000 \$1-ts 15:41 \; 1000
+\$1-ts 15:42 \; \$1-a_flight CI_947 \; \$1-a_airline China_Airlines
+\; \$1-a_loc B \; \$1-a_city Kaohsiung \; 1000 \$1-ts 15:43 \; \$1-d_flight
+CX_635 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 32 \; \$1-d_city
+Singapore \; \$1-d_flight CX_781 \; \$1-d_airline Cathay_Pacific \;
+\$1-d_loc 35 \; \$1-d_city Surabaya \; \$1-a_flight MU_503 \; \$1-a_airline
+China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city Shanghai/PVG \;
+1000 \$1-ts 15:44 \; \$1-d_flight KA_834 \; \$1-d_airline Dragonair
+\; \$1-d_loc 524 \; \$1-d_city Shanghai/PVG \; \$1-a_flight CX_118
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Auckland
+\; \$1-a_flight CX_136 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Perth \; 1000 \$1-ts 15:45 \; \$1-d_flight JW_344 \;
+\$1-d_airline Vanilla_Air \; \$1-d_loc 507 \; \$1-d_city Tokyo/NRT
+\; 1000 \$1-ts 15:46 \; \$1-d_flight KE_614 \; \$1-d_airline Korean_Air
+\; \$1-d_loc 18 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 15:47 \; 1000
+\$1-ts 15:48 \; \$1-a_flight BA_031 \; \$1-a_airline British_Airways
+\; \$1-a_loc A \; \$1-a_city London/LHR \; 1000 \$1-ts 15:49 \; 1000
+\$1-ts 15:50 \; \$1-d_flight HX_202 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 523 \; \$1-d_city Xuzhou \; 1000 \$1-ts 15:51 \; \$1-a_flight
+CI_679 \; \$1-a_airline China_Airlines \; \$1-a_loc B \; \$1-a_city
+Taipei \; 1000 \$1-ts 15:52 \; \$1-a_flight HX_337 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts
+15:53 \; \$1-d_flight UO_1360 \; \$1-d_airline HK_Express \; \$1-d_loc
+522 \; \$1-d_city Wuxi \; 1000 \$1-ts 15:54 \; \$1-d_flight BR_870
+\; \$1-d_airline EVA_Air \; \$1-d_loc 20 \; \$1-d_city Taipei \; 1000
+\$1-ts 15:55 \; \$1-d_flight AE_1822 \; \$1-d_airline Mandarin_Airlines
+\; \$1-d_loc 525 \; \$1-d_city Taichung \; \$1-d_flight SQ_861 \; \$1-d_airline
+Singapore_Airlines \; \$1-d_loc 19 \; \$1-d_city Singapore \; 1000
+\$1-ts 15:56 \; 1000 \$1-ts 15:57 \; \$1-a_flight CX_256 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc A \; \$1-a_city London/LHR \; 1000 \$1-ts
+15:58 \; \$1-a_flight GA_860 \; \$1-a_airline Garuda_Indonesia \; \$1-a_loc
+A \; \$1-a_city Jakarta \; 1000 \$1-ts 15:59 \; \$1-d_flight CZ_3044
+\; \$1-d_airline China_Southern \; \$1-d_loc 521 \; \$1-d_city Meixian
+\; \$1-a_flight KA_865 \; \$1-a_airline Dragonair \; \$1-a_loc B \;
+\$1-a_city Shanghai/PVG \; 1000 \$1-ts 16:00 \; 1000 \$1-ts 16:01 \;
+1000 \$1-ts 16:02 \; \$1-d_flight CX_719 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 40 \; \$1-d_city Jakarta \; \$1-d_flight CX_729 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 31 \; \$1-d_city Kuala_Lumpur \; \$1-a_flight
+MU_733 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city
+Lijiang \; 1000 \$1-ts 16:03 \; \$1-a_flight CX_533 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Nagoya \; \$1-a_flight
+HX_353 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city
+Guiyang \; 1000 \$1-ts 16:04 \; \$1-d_flight HX_270 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 505 \; \$1-d_city Nanchang \; \$1-d_flight
+GA_857 \; \$1-d_airline Garuda_Indonesia \; \$1-d_loc 509 \; \$1-d_city
+Denpasar \; \$1-a_flight UO_1601 \; \$1-a_airline HK_Express \; \$1-a_loc
+A \; \$1-a_city Fukuoka \; 1000 \$1-ts 16:05 \; 1000 \$1-ts 16:06 \;
+1000 \$1-ts 16:07 \; \$1-d_flight KA_067 \; \$1-d_airline Dragonair
+\; \$1-d_loc 511 \; \$1-d_city Kota_Kinabalu \; 1000 \$1-ts 16:08 \;
+\$1-a_flight BR_855 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city
+Taipei \; 1000 \$1-ts 16:09 \; \$1-a_flight KA_491 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Taichung \; 1000 \$1-ts 16:10
+\; 1000 \$1-ts 16:11 \; 1000 \$1-ts 16:12 \; \$1-a_flight 3U_8617 \;
+\$1-a_airline Sichuan_Airlines \; \$1-a_loc A \; \$1-a_city Chengdu
+\; 1000 \$1-ts 16:13 \; \$1-d_flight KA_636 \; \$1-d_airline Dragonair
+\; \$1-d_loc 513 \; \$1-d_city Hangzhou \; \$1-a_flight AY_069 \; \$1-a_airline
+FINNAIR \; \$1-a_loc A \; \$1-a_city Helsinki \; 1000 \$1-ts 16:14
+\; \$1-d_flight KA_206 \; \$1-d_airline Dragonair \; \$1-d_loc 21 \;
+\$1-d_city Phnom_Penh \; 1000 \$1-ts 16:15 \; \$1-d_flight UO_688 \;
+\$1-d_airline HK_Express \; \$1-d_loc 503 \; \$1-d_city Osaka/Kansai
+\; \$1-d_flight CX_542 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+43 \; \$1-d_city Tokyo/HND \; \$1-a_flight KA_813 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/SHA \; 1000 \$1-ts
+16:16 \; 1000 \$1-ts 16:17 \; 1000 \$1-ts 16:18 \; \$1-a_flight CX_367
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc A \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 16:19 \; \$1-a_flight AI_317 \; \$1-a_airline Air_India
+\; \$1-a_loc A \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 16:20 \; \$1-d_flight
+CX_701 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 4 \; \$1-d_city
+Bangkok \; 1000 \$1-ts 16:21 \; \$1-d_flight ZH_9464 \; \$1-d_airline
+Shenzhen_Airlines \; \$1-d_loc 504 \; \$1-d_city Yantai \; \$1-a_flight
+KA_877 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 16:22 \; 1000 \$1-ts 16:23 \; 1000 \$1-ts 16:24 \; \$1-a_flight
+VS_206 \; \$1-a_airline Virgin_Atlantic_Airways \; \$1-a_loc B \; \$1-a_city
+London/LHR \; 1000 \$1-ts 16:25 \; 1000 \$1-ts 16:26 \; 1000 \$1-ts
+16:27 \; \$1-d_flight AC_016 \; \$1-d_airline Air_Canada \; \$1-d_loc
+27 \; \$1-d_city Toronto \; 1000 \$1-ts 16:28 \; \$1-a_flight KA_901
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Beijing \;
+1000 \$1-ts 16:29 \; \$1-a_flight CX_565 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts 16:30 \; \$1-d_flight
+UO_1332 \; \$1-d_airline HK_Express \; \$1-d_loc 506 \; \$1-d_city
+Ningbo \; \$1-a_flight KE_601 \; \$1-a_airline Korean_Air \; \$1-a_loc
+A \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 16:31 \; \$1-a_flight CX_614
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Bangkok
+\; 1000 \$1-ts 16:32 \; \$1-d_flight CX_903 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 63 \; \$1-d_city Manila \; 1000 \$1-ts 16:33 \; \$1-d_flight
+CX_502 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 33 \; \$1-d_city
+Osaka/Kansai \; 1000 \$1-ts 16:34 \; \$1-a_flight CA_105 \; \$1-a_airline
+Air_China \; \$1-a_loc A \; \$1-a_city Dalian \; 1000 \$1-ts 16:35
+\; 1000 \$1-ts 16:36 \; \$1-d_flight CX_400 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 16 \; \$1-d_city Taipei \; 1000 \$1-ts 16:37 \; 1000 \$1-ts
+16:38 \; \$1-d_flight CX_416 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+42 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 16:39 \; \$1-d_flight CI_948
+\; \$1-d_airline China_Airlines \; \$1-d_loc 29 \; \$1-d_city Kaohsiung
+\; 1000 \$1-ts 16:40 \; \$1-a_flight LH_796 \; \$1-a_airline Lufthansa
+\; \$1-a_loc A \; \$1-a_city Frankfurt \; 1000 \$1-ts 16:41 \; \$1-a_flight
+BA_027 \; \$1-a_airline British_Airways \; \$1-a_loc A \; \$1-a_city
+London/LHR \; 1000 \$1-ts 16:42 \; \$1-a_flight CX_439 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Seoul/ICN \; 1000 \$1-ts
+16:43 \; \$1-d_flight CI_679 \; \$1-d_airline China_Airlines \; \$1-d_loc
+30 \; \$1-d_city Jakarta \; 1000 \$1-ts 16:44 \; 1000 \$1-ts 16:45
+\; \$1-d_flight KA_720 \; \$1-d_airline Dragonair \; \$1-d_loc 513
+\; \$1-d_city Changsha \; \$1-a_flight CA_109 \; \$1-a_airline Air_China
+\; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts 16:46 \; 1000 \$1-ts
+16:47 \; \$1-d_flight KA_226 \; \$1-d_airline Dragonair \; \$1-d_loc
+511 \; \$1-d_city Da_Nang \; 1000 \$1-ts 16:48 \; \$1-d_flight CX_703
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 24 \; \$1-d_city Bangkok
+\; \$1-a_flight MU_595 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc
+A \; \$1-a_city Hangzhou \; 1000 \$1-ts 16:49 \; \$1-a_flight FM_849
+\; \$1-a_airline Shanghai_Airlines \; \$1-a_loc A \; \$1-a_city Zhanjiang
+\; 1000 \$1-ts 16:50 \; \$1-d_flight KA_454 \; \$1-d_airline Dragonair
+\; \$1-d_loc 34 \; \$1-d_city Kaohsiung \; \$1-a_flight KA_437 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Kaohsiung \; 1000 \$1-ts 16:51
+\; \$1-d_flight CX_925 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+71 \; \$1-d_city Cebu \; 1000 \$1-ts 16:52 \; 1000 \$1-ts 16:53 \;
+\$1-a_flight KA_213 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city
+Phuket \; 1000 \$1-ts 16:54 \; 1000 \$1-ts 16:55 \; \$1-d_flight UO_1558
+\; \$1-d_airline HK_Express \; \$1-d_loc 501 \; \$1-d_city Da_Nang
+\; \$1-d_flight CX_882 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+15 \; \$1-d_city Los_Angeles \; 1000 \$1-ts 16:56 \; \$1-d_flight MU_504
+\; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 512 \; \$1-d_city
+Shanghai/PVG \; 1000 \$1-ts 16:57 \; \$1-d_flight CX_711 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 3 \; \$1-d_city Singapore \; 1000 \$1-ts
+16:58 \; \$1-d_flight KA_974 \; \$1-d_airline Dragonair \; \$1-d_loc
+510 \; \$1-d_city Beijing \; \$1-a_flight KA_821 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Chengdu \; 1000 \$1-ts 16:59 \; \$1-a_flight
+SA_286 \; \$1-a_airline South_African_Airways \; \$1-a_loc B \; \$1-a_city
+Johannesburg \; 1000 \$1-ts 17:00 \; \$1-d_flight HX_2206 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 520 \; \$1-d_city Zunyi \; \$1-a_flight
+MU_711 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city
+Shanghai/PVG \; \$1-a_flight SQ_866 \; \$1-a_airline Singapore_Airlines
+\; \$1-a_loc A \; \$1-a_city Singapore \; \$1-a_flight AK_136 \; \$1-a_airline
+AirAsia \; \$1-a_loc A \; \$1-a_city Kuala_Lumpur \; 1000 \$1-ts 17:01
+\; 1000 \$1-ts 17:02 \; \$1-d_flight HX_765 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 522 \; \$1-d_city Bangkok \; 1000 \$1-ts 17:03 \; \$1-d_flight
+CX_312 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 44 \; \$1-d_city
+Beijing \; 1000 \$1-ts 17:04 \; 1000 \$1-ts 17:05 \; 1000 \$1-ts 17:06
+\; \$1-a_flight CX_467 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 17:07 \; \$1-d_flight HX_228
+\; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 507 \; \$1-d_city
+Hangzhou \; \$1-d_flight PG_806 \; \$1-d_airline Bangkok_Airways \;
+\$1-d_loc 502 \; \$1-d_city Samui \; 1000 \$1-ts 17:08 \; \$1-a_flight
+CX_391 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Beijing \; 1000 \$1-ts 17:09 \; \$1-d_flight CX_840 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 49 \; \$1-d_city New_York/JFK \; 1000 \$1-ts
+17:10 \; \$1-d_flight CX_838 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+69 \; \$1-d_city Vancouver \; \$1-a_flight CA_419 \; \$1-a_airline
+Air_China \; \$1-a_loc A \; \$1-a_city Chongqing \; 1000 \$1-ts 17:11
+\; \$1-d_flight MU_734 \; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc
+508 \; \$1-d_city Kunming \; \$1-a_flight CX_897 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Los_Angeles \; 1000 \$1-ts 17:12 \; \$1-d_flight
+GA_863 \; \$1-d_airline Garuda_Indonesia \; \$1-d_loc 26 \; \$1-d_city
+Jakarta \; 1000 \$1-ts 17:13 \; 1000 \$1-ts 17:14 \; \$1-a_flight S7_545
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc A \; \$1-a_city Vladivostok
+\; \$1-a_flight TK_070 \; \$1-a_airline TURKISH_AIRLINES \; \$1-a_loc
+B \; \$1-a_city Istanbul \; 1000 \$1-ts 17:15 \; \$1-d_flight BR_856
+\; \$1-d_airline EVA_Air \; \$1-d_loc 32 \; \$1-d_city Taipei \; \$1-a_flight
+UO_657 \; \$1-a_airline HK_Express \; \$1-a_loc A \; \$1-a_city Nagoya
+\; 1000 \$1-ts 17:16 \; 1000 \$1-ts 17:17 \; 1000 \$1-ts 17:18 \; 1000
+\$1-ts 17:19 \; \$1-d_flight 3U_8618 \; \$1-d_airline Sichuan_Airlines
+\; \$1-d_loc 505 \; \$1-d_city Chengdu \; 1000 \$1-ts 17:20 \; \$1-d_flight
+CX_532 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 36 \; \$1-d_city
+Nagoya \; 1000 \$1-ts 17:21 \; \$1-d_flight KA_808 \; \$1-d_airline
+Dragonair \; \$1-d_loc 50 \; \$1-d_city Shanghai/PVG \; \$1-a_flight
+KA_641 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Ningbo
+\; \$1-a_flight MF_8701 \; \$1-a_airline Xiamen_Airlines \; \$1-a_loc
+A \; \$1-a_city Wuyishan \; 1000 \$1-ts 17:22 \; \$1-a_flight HX_255
+\; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Taipei
+\; 1000 \$1-ts 17:23 \; 1000 \$1-ts 17:24 \; \$1-d_flight CA_106 \;
+\$1-d_airline Air_China \; \$1-d_loc 509 \; \$1-d_city Dalian \; 1000
+\$1-ts 17:25 \; 1000 \$1-ts 17:26 \; 1000 \$1-ts 17:27 \; \$1-d_flight
+CX_695 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 28 \; \$1-d_city
+Delhi \; \$1-a_flight CX_690 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Singapore \; 1000 \$1-ts 17:28 \; 1000 \$1-ts 17:29
+\; \$1-a_flight AE_983 \; \$1-a_airline Mandarin_Airlines \; \$1-a_loc
+B \; \$1-a_city Kaohsiung \; \$1-a_flight CX_722 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Kuala_Lumpur \; 1000 \$1-ts 17:30 \; 1000
+\$1-ts 17:31 \; 1000 \$1-ts 17:32 \; \$1-a_flight EK_384 \; \$1-a_airline
+Emirates \; \$1-a_loc B \; \$1-a_city Dubai \; 1000 \$1-ts 17:33 \;
+\$1-d_flight MU_596 \; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc
+506 \; \$1-d_city Hangzhou \; \$1-a_flight HX_217 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Nanjing \; 1000 \$1-ts
+17:34 \; \$1-d_flight HX_282 \; \$1-d_airline Hong_Kong_Airlines \;
+\$1-d_loc 512 \; \$1-d_city Taipei \; \$1-a_flight UO_674 \; \$1-a_airline
+HK_Express \; \$1-a_loc B \; \$1-a_city Busan \; 1000 \$1-ts 17:35
+\; 1000 \$1-ts 17:36 \; 1000 \$1-ts 17:37 \; \$1-a_flight KA_603 \;
+\$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Xiamen \; 1000
+\$1-ts 17:38 \; \$1-a_flight KA_811 \; \$1-a_airline Dragonair \; \$1-a_loc
+A \; \$1-a_city Nanjing \; 1000 \$1-ts 17:39 \; \$1-a_flight QF_127
+\; \$1-a_airline Qantas_Airways \; \$1-a_loc A \; \$1-a_city Sydney
+\; 1000 \$1-ts 17:40 \; \$1-a_flight CX_162 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Sydney \; 1000 \$1-ts 17:41 \; \$1-a_flight
+KA_761 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Kunming
+\; 1000 \$1-ts 17:42 \; 1000 \$1-ts 17:43 \; \$1-a_flight CA_709 \;
+\$1-a_airline Air_China \; \$1-a_loc A \; \$1-a_city Tianjin \; 1000
+\$1-ts 17:44 \; \$1-d_flight AK_137 \; \$1-d_airline AirAsia \; \$1-d_loc
+34 \; \$1-d_city Kuala_Lumpur \; 1000 \$1-ts 17:45 \; 1000 \$1-ts 17:46
+\; \$1-a_flight QF_097 \; \$1-a_airline Qantas_Airways \; \$1-a_loc
+A \; \$1-a_city Brisbane \; 1000 \$1-ts 17:47 \; \$1-d_flight CX_470
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 25 \; \$1-d_city Taipei
+\; 1000 \$1-ts 17:48 \; \$1-a_flight TG_638 \; \$1-a_airline Thai_Airways
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 17:49 \; \$1-d_flight
+CA_110 \; \$1-d_airline Air_China \; \$1-d_loc 18 \; \$1-d_city Beijing
+\; \$1-d_flight KA_854 \; \$1-d_airline Dragonair \; \$1-d_loc 523
+\; \$1-d_city Wuhan \; 1000 \$1-ts 17:50 \; 1000 \$1-ts 17:51 \; \$1-d_flight
+CX_765 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 22 \; \$1-d_city
+Ho_Chi_Minh \; 1000 \$1-ts 17:52 \; \$1-a_flight AC_007 \; \$1-a_airline
+Air_Canada \; \$1-a_loc B \; \$1-a_city Vancouver \; 1000 \$1-ts 17:53
+\; 1000 \$1-ts 17:54 \; \$1-a_flight UO_2356 \; \$1-a_airline HK_Express
+\; \$1-a_loc A \; \$1-a_city Lanzhou \; 1000 \$1-ts 17:55 \; \$1-d_flight
+CX_731 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 31 \; \$1-d_city
+Dubai \; \$1-d_flight AI_317 \; \$1-d_airline Air_India \; \$1-d_loc
+40 \; \$1-d_city Delhi \; \$1-a_flight LX_138 \; \$1-a_airline SWISS_International_Air_Lines
+\; \$1-a_loc B \; \$1-a_city Zurich \; 1000 \$1-ts 17:56 \; \$1-d_flight
+MU_712 \; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 525 \;
+\$1-d_city Shanghai/PVG \; 1000 \$1-ts 17:57 \; 1000 \$1-ts 17:58 \;
+\$1-d_flight KA_642 \; \$1-d_airline Dragonair \; \$1-d_loc 522 \;
+\$1-d_city Ningbo \; \$1-a_flight KA_376 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Clark \; 1000 \$1-ts 17:59 \; 1000 \$1-ts
+18:00 \; \$1-a_flight QF_029 \; \$1-a_airline Qantas_Airways \; \$1-a_loc
+A \; \$1-a_city Melbourne \; 1000 \$1-ts 18:01 \; \$1-d_flight CX_935
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 66 \; \$1-d_city Manila
+\; 1000 \$1-ts 18:02 \; 1000 \$1-ts 18:03 \; \$1-d_flight KA_662 \;
+\$1-d_airline Dragonair \; \$1-d_loc 42 \; \$1-d_city Fuzhou \; 1000
+\$1-ts 18:04 \; \$1-d_flight NZ_080 \; \$1-d_airline AIR_NEW_ZEALAND
+\; \$1-d_loc 43 \; \$1-d_city Auckland \; 1000 \$1-ts 18:05 \; \$1-d_flight
+KA_904 \; \$1-d_airline Dragonair \; \$1-d_loc 21 \; \$1-d_city Beijing
+\; \$1-a_flight HX_657 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+B \; \$1-a_city Okinawa \; 1000 \$1-ts 18:06 \; \$1-d_flight MF_8702
+\; \$1-d_airline Xiamen_Airlines \; \$1-d_loc 508 \; \$1-d_city Wuyishan
+\; \$1-a_flight 5J_086 \; \$1-a_airline Cebu_Pacific_Air \; \$1-a_loc
+A \; \$1-a_city Kalibo \; \$1-a_flight UO_1687 \; \$1-a_airline HK_Express
+\; \$1-a_loc A \; \$1-a_city Osaka/Kansai \; \$1-a_flight CX_411 \;
+\$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Seoul/ICN
+\; 1000 \$1-ts 18:07 \; \$1-d_flight EK_383 \; \$1-d_airline Emirates
+\; \$1-d_loc 62 \; \$1-d_city Dubai \; 1000 \$1-ts 18:08 \; 1000 \$1-ts
+18:09 \; 1000 \$1-ts 18:10 \; \$1-d_flight FM_850 \; \$1-d_airline
+Shanghai_Airlines \; \$1-d_loc 513 \; \$1-d_city Zhanjiang \; \$1-a_flight
+FM_845 \; \$1-a_airline Shanghai_Airlines \; \$1-a_loc A \; \$1-a_city
+Shanghai/SHA \; 1000 \$1-ts 18:11 \; \$1-a_flight CX_254 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city London/LHR \; 1000 \$1-ts
+18:12 \; \$1-d_flight S7_546 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+503 \; \$1-d_city Vladivostok \; 1000 \$1-ts 18:13 \; 1000 \$1-ts 18:14
+\; \$1-d_flight CX_826 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+29 \; \$1-d_city Toronto \; 1000 \$1-ts 18:15 \; \$1-a_flight KA_893
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/PVG
+\; 1000 \$1-ts 18:16 \; \$1-d_flight KE_602 \; \$1-d_airline Korean_Air
+\; \$1-d_loc 19 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 18:17 \; 1000
+\$1-ts 18:18 \; \$1-d_flight EY_833 \; \$1-d_airline ETIHAD_AIRWAYS
+\; \$1-d_loc 69 \; \$1-d_city Abu_Dhabi \; 1000 \$1-ts 18:19 \; \$1-a_flight
+CI_915 \; \$1-a_airline China_Airlines \; \$1-a_loc A \; \$1-a_city
+Taipei \; 1000 \$1-ts 18:20 \; 1000 \$1-ts 18:21 \; 1000 \$1-ts 18:22
+\; \$1-d_flight CA_710 \; \$1-d_airline Air_China \; \$1-d_loc 505
+\; \$1-d_city Tianjin \; \$1-a_flight KA_951 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Qingdao \; \$1-a_flight CA_427 \; \$1-a_airline
+Air_China \; \$1-a_loc A \; \$1-a_city Chengdu \; 1000 \$1-ts 18:23
+\; \$1-a_flight AE_1841 \; \$1-a_airline Mandarin_Airlines \; \$1-a_loc
+B \; \$1-a_city Taichung \; 1000 \$1-ts 18:24 \; \$1-d_flight KA_396
+\; \$1-d_airline Dragonair \; \$1-d_loc 521 \; \$1-d_city Tokyo/HND
+\; 1000 \$1-ts 18:25 \; 1000 \$1-ts 18:26 \; \$1-d_flight CX_699 \;
+\$1-d_airline Cathay_Pacific \; \$1-d_loc 1 \; \$1-d_city Mumbai \;
+\$1-d_flight UO_192 \; \$1-d_airline HK_Express \; \$1-d_loc 520 \;
+\$1-d_city Taichung \; \$1-d_flight CA_420 \; \$1-d_airline Air_China
+\; \$1-d_loc 501 \; \$1-d_city Chongqing \; 1000 \$1-ts 18:27 \; 1000
+\$1-ts 18:28 \; 1000 \$1-ts 18:29 \; 1000 \$1-ts 18:30 \; \$1-d_flight
+CX_645 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 24 \; \$1-d_city
+Doha \; \$1-a_flight CX_405 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 18:31 \; \$1-a_flight AF_188
+\; \$1-a_airline Air_France \; \$1-a_loc A \; \$1-a_city Paris \; 1000
+\$1-ts 18:32 \; 1000 \$1-ts 18:33 \; \$1-d_flight UO_753 \; \$1-d_airline
+HK_Express \; \$1-d_loc 524 \; \$1-d_city Chiang_Mai \; \$1-d_flight
+KA_482 \; \$1-d_airline Dragonair \; \$1-d_loc 45 \; \$1-d_city Taipei
+\; 1000 \$1-ts 18:34 \; \$1-a_flight AA_137 \; \$1-a_airline American_Airlines
+\; \$1-a_loc B \; \$1-a_city Dallas_FT.Worth \; 1000 \$1-ts 18:35 \;
+\$1-d_flight CX_890 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 3
+\; \$1-d_city Newark \; \$1-a_flight KA_693 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Haikou \; \$1-a_flight TR_2066 \; \$1-a_airline
+Tigerair \; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts 18:36
+\; 1000 \$1-ts 18:37 \; \$1-a_flight 9C_8959 \; \$1-a_airline Spring_Airlines
+\; \$1-a_loc A \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 18:38 \; 1000
+\$1-ts 18:39 \; 1000 \$1-ts 18:40 \; 1000 \$1-ts 18:41 \; 1000 \$1-ts
+18:42 \; \$1-a_flight KA_741 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Zhengzhou \; 1000 \$1-ts 18:43 \; \$1-d_flight AE_984
+\; \$1-d_airline Mandarin_Airlines \; \$1-d_loc 525 \; \$1-d_city Kaohsiung
+\; \$1-a_flight KA_621 \; \$1-a_airline Dragonair \; \$1-a_loc A \;
+\$1-a_city Hangzhou \; 1000 \$1-ts 18:44 \; \$1-d_flight HX_232 \;
+\$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 511 \; \$1-d_city Shanghai/PVG
+\; 1000 \$1-ts 18:45 \; \$1-d_flight UO_1862 \; \$1-d_airline HK_Express
+\; \$1-d_loc 522 \; \$1-d_city Osaka/Kansai \; 1000 \$1-ts 18:46 \;
+1000 \$1-ts 18:47 \; 1000 \$1-ts 18:48 \; 1000 \$1-ts 18:49 \; \$1-d_flight
+HX_6705 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 524 \; \$1-d_city
+Denpasar \; \$1-d_flight SQ_865 \; \$1-d_airline Singapore_Airlines
+\; \$1-d_loc 15 \; \$1-d_city Singapore \; \$1-a_flight SQ_872 \; \$1-a_airline
+Singapore_Airlines \; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts
+18:50 \; 1000 \$1-ts 18:51 \; 1000 \$1-ts 18:52 \; \$1-a_flight PR_306
+\; \$1-a_airline Philippine_Airlines \; \$1-a_loc A \; \$1-a_city Manila
+\; 1000 \$1-ts 18:53 \; 1000 \$1-ts 18:54 \; \$1-d_flight CX_402 \;
+\$1-d_airline Cathay_Pacific \; \$1-d_loc 65 \; \$1-d_city Taipei \;
+\$1-a_flight MU_2599 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc
+A \; \$1-a_city Beihai \; 1000 \$1-ts 18:55 \; \$1-a_flight CX_831
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city New_York/JFK
+\; 1000 \$1-ts 18:56 \; 1000 \$1-ts 18:57 \; \$1-d_flight KA_295 \;
+\$1-d_airline Dragonair \; \$1-d_loc 523 \; \$1-d_city Hanoi \; 1000
+\$1-ts 18:58 \; \$1-d_flight KA_604 \; \$1-d_airline Dragonair \; \$1-d_loc
+26 \; \$1-d_city Xiamen \; \$1-d_flight KA_862 \; \$1-d_airline Dragonair
+\; \$1-d_loc 502 \; \$1-d_city Nanjing \; 1000 \$1-ts 18:59 \; \$1-a_flight
+CI_919 \; \$1-a_airline China_Airlines \; \$1-a_loc B \; \$1-a_city
+Taipei \; \$1-a_flight CZ_635 \; \$1-a_airline China_Southern \; \$1-a_loc
+A \; \$1-a_city Shenyang \; \$1-a_flight O8_6619 \; \$1-a_airline SIAM_AIR_TRANSPORT
+\; \$1-a_loc A \; \$1-a_city Bangkok/DMK \; 1000 \$1-ts 19:00 \; \$1-d_flight
+TG_639 \; \$1-d_airline Thai_Airways \; \$1-d_loc 36 \; \$1-d_city
+Bangkok \; 1000 \$1-ts 19:01 \; \$1-a_flight KA_841 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Chongqing \; 1000 \$1-ts 19:02
+\; 1000 \$1-ts 19:03 \; \$1-d_flight UO_622 \; \$1-d_airline HK_Express
+\; \$1-d_loc 509 \; \$1-d_city Tokyo/HND \; 1000 \$1-ts 19:04 \; 1000
+\$1-ts 19:05 \; \$1-a_flight KA_805 \; \$1-a_airline Dragonair \; \$1-a_loc
+A \; \$1-a_city Shanghai/PVG \; \$1-a_flight UA_895 \; \$1-a_airline
+United_Airlines \; \$1-a_loc A \; \$1-a_city Chicago \; 1000 \$1-ts
+19:06 \; \$1-d_flight 5J_087 \; \$1-d_airline Cebu_Pacific_Air \; \$1-d_loc
+507 \; \$1-d_city Kalibo \; 1000 \$1-ts 19:07 \; \$1-d_flight KA_872
+\; \$1-d_airline Dragonair \; \$1-d_loc 504 \; \$1-d_city Shanghai/PVG
+\; 1000 \$1-ts 19:08 \; \$1-a_flight HX_776 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 19:09 \; \$1-a_flight
+HX_211 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city
+Yancheng \; 1000 \$1-ts 19:10 \; \$1-d_flight CX_111 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 49 \; \$1-d_city Sydney \; \$1-a_flight
+KA_947 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Xian
+\; 1000 \$1-ts 19:11 \; \$1-d_flight FM_846 \; \$1-d_airline Shanghai_Airlines
+\; \$1-d_loc 510 \; \$1-d_city Shanghai/SHA \; \$1-a_flight KA_703
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Guilin \; 1000
+\$1-ts 19:12 \; 1000 \$1-ts 19:13 \; 1000 \$1-ts 19:14 \; \$1-a_flight
+BR_871 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city Taipei
+\; 1000 \$1-ts 19:15 \; \$1-a_flight KA_381 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Fukuoka \; 1000 \$1-ts 19:16 \; 1000 \$1-ts
+19:17 \; \$1-a_flight FD_504 \; \$1-a_airline Thai_AirAsia \; \$1-a_loc
+A \; \$1-a_city Bangkok/DMK \; 1000 \$1-ts 19:18 \; \$1-d_flight KA_456
+\; \$1-d_airline Dragonair \; \$1-d_loc 40 \; \$1-d_city Kaohsiung
+\; \$1-d_flight CX_797 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+68 \; \$1-d_city Jakarta \; \$1-a_flight UO_1633 \; \$1-a_airline HK_Express
+\; \$1-a_loc A \; \$1-a_city Tokyo/NRT \; 1000 \$1-ts 19:19 \; \$1-d_flight
+KA_894 \; \$1-d_airline Dragonair \; \$1-d_loc 44 \; \$1-d_city Shanghai/PVG
+\; 1000 \$1-ts 19:20 \; \$1-d_flight HX_709 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 23 \; \$1-d_city Denpasar \; 1000 \$1-ts 19:21 \; 1000
+\$1-ts 19:22 \; 1000 \$1-ts 19:23 \; 1000 \$1-ts 19:24 \; \$1-a_flight
+Z2_1264 \; \$1-a_airline AirAsia_Zest \; \$1-a_loc A \; \$1-a_city
+Manila \; \$1-a_flight AK_239 \; \$1-a_airline AirAsia \; \$1-a_loc
+A \; \$1-a_city Kota_Kinabalu \; 1000 \$1-ts 19:25 \; \$1-d_flight
+CX_135 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 70 \; \$1-d_city
+Melbourne \; \$1-d_flight QF_098 \; \$1-d_airline Qantas_Airways \;
+\$1-d_loc 22 \; \$1-d_city Brisbane \; \$1-a_flight CX_654 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts
+19:26 \; \$1-d_flight TR_2067 \; \$1-d_airline Tigerair \; \$1-d_loc
+503 \; \$1-d_city Singapore \; 1000 \$1-ts 19:27 \; \$1-a_flight MF_8001
+\; \$1-a_airline Xiamen_Airlines \; \$1-a_loc A \; \$1-a_city Fuzhou
+\; 1000 \$1-ts 19:28 \; \$1-d_flight CA_428 \; \$1-d_airline Air_China
+\; \$1-d_loc 506 \; \$1-d_city Chengdu \; 1000 \$1-ts 19:29 \; \$1-a_flight
+TG_606 \; \$1-a_airline Thai_Airways \; \$1-a_loc B \; \$1-a_city Bangkok
+\; 1000 \$1-ts 19:30 \; 1000 \$1-ts 19:31 \; 1000 \$1-ts 19:32 \; \$1-a_flight
+CA_115 \; \$1-a_airline Air_China \; \$1-a_loc A \; \$1-a_city Beijing
+\; 1000 \$1-ts 19:33 \; 1000 \$1-ts 19:34 \; \$1-d_flight CI_916 \;
+\$1-d_airline China_Airlines \; \$1-d_loc 18 \; \$1-d_city Taipei \;
+\$1-d_flight AE_1842 \; \$1-d_airline Mandarin_Airlines \; \$1-d_loc
+20 \; \$1-d_city Taichung \; 1000 \$1-ts 19:35 \; 1000 \$1-ts 19:36
+\; 1000 \$1-ts 19:37 \; \$1-a_flight CX_837 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Vancouver \; 1000 \$1-ts 19:38 \; \$1-d_flight
+MU_2600 \; \$1-d_airline China_Eastern_Airlines \; \$1-d_loc 501 \;
+\$1-d_city Beihai \; 1000 \$1-ts 19:39 \; \$1-a_flight CX_539 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Nagoya \; \$1-a_flight
+FD_524 \; \$1-a_airline Thai_AirAsia \; \$1-a_loc A \; \$1-a_city Phuket
+\; 1000 \$1-ts 19:40 \; \$1-d_flight QF_030 \; \$1-d_airline Qantas_Airways
+\; \$1-d_loc 28 \; \$1-d_city Melbourne \; 1000 \$1-ts 19:41 \; \$1-a_flight
+CX_885 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Los_Angeles \; \$1-a_flight 3K_695 \; \$1-a_airline Jetstar_Asia_Airways
+\; \$1-a_loc A \; \$1-a_city Singapore \; 1000 \$1-ts 19:42 \; 1000
+\$1-ts 19:43 \; \$1-d_flight 9C_8960 \; \$1-d_airline Spring_Airlines
+\; \$1-d_loc 511 \; \$1-d_city Shanghai/PVG \; \$1-a_flight MH_432
+\; \$1-a_airline Malaysia_Airlines \; \$1-a_loc B \; \$1-a_city Kuala_Lumpur
+\; 1000 \$1-ts 19:44 \; \$1-d_flight CX_846 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 4 \; \$1-d_city New_York/JFK \; 1000 \$1-ts 19:45 \; 1000
+\$1-ts 19:46 \; 1000 \$1-ts 19:47 \; \$1-d_flight PR_307 \; \$1-d_airline
+Philippine_Airlines \; \$1-d_loc 21 \; \$1-d_city Manila \; 1000 \$1-ts
+19:48 \; 1000 \$1-ts 19:49 \; \$1-d_flight FD_505 \; \$1-d_airline
+Thai_AirAsia \; \$1-d_loc 26 \; \$1-d_city Bangkok/DMK \; \$1-a_flight
+ZH_9043 \; \$1-a_airline Shenzhen_Airlines \; \$1-a_loc A \; \$1-a_city
+Jinjiang \; \$1-a_flight HX_2646 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc A \; \$1-a_city Yonago \; 1000 \$1-ts 19:50 \; \$1-d_flight
+CX_464 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 2 \; \$1-d_city
+Taipei \; \$1-a_flight 5J_118 \; \$1-a_airline Cebu_Pacific_Air \;
+\$1-a_loc A \; \$1-a_city Manila \; 1000 \$1-ts 19:51 \; \$1-d_flight
+9W_075 \; \$1-d_airline Jet_Airways \; \$1-d_loc 42 \; \$1-d_city Mumbai
+\; 1000 \$1-ts 19:52 \; 1000 \$1-ts 19:53 \; 1000 \$1-ts 19:54 \; \$1-a_flight
+CX_879 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+San_Francisco \; \$1-a_flight AE_1831 \; \$1-a_airline Mandarin_Airlines
+\; \$1-a_loc B \; \$1-a_city Taichung \; 1000 \$1-ts 19:55 \; \$1-d_flight
+AC_008 \; \$1-d_airline Air_Canada \; \$1-d_loc 50 \; \$1-d_city Vancouver
+\; \$1-d_flight KA_494 \; \$1-d_airline Dragonair \; \$1-d_loc 508
+\; \$1-d_city Taichung \; 1000 \$1-ts 19:56 \; \$1-a_flight KA_883
+\; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/SHA
+\; 1000 \$1-ts 19:57 \; \$1-d_flight QF_128 \; \$1-d_airline Qantas_Airways
+\; \$1-d_loc 27 \; \$1-d_city Sydney \; 1000 \$1-ts 19:58 \; 1000 \$1-ts
+19:59 \; 1000 \$1-ts 20:00 \; \$1-d_flight Z2_1265 \; \$1-d_airline
+AirAsia_Zest \; \$1-d_loc 504 \; \$1-d_city Manila \; 1000 \$1-ts 20:01
+\; \$1-a_flight TG_608 \; \$1-a_airline Thai_Airways \; \$1-a_loc B
+\; \$1-a_city Phuket \; 1000 \$1-ts 20:02 \; \$1-d_flight CX_715 \;
+\$1-d_airline Cathay_Pacific \; \$1-d_loc 34 \; \$1-d_city Singapore
+\; \$1-a_flight GK_063 \; \$1-a_airline Jetstar_Japan \; \$1-a_loc
+A \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts 20:03 \; \$1-d_flight CZ_636
+\; \$1-d_airline China_Southern \; \$1-d_loc 521 \; \$1-d_city Shenyang
+\; \$1-a_flight HX_241 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+B \; \$1-a_city Shanghai/PVG \; \$1-a_flight KA_909 \; \$1-a_airline
+Dragonair \; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts 20:04
+\; 1000 \$1-ts 20:05 \; 1000 \$1-ts 20:06 \; 1000 \$1-ts 20:07 \; 1000
+\$1-ts 20:08 \; \$1-d_flight O8_6620 \; \$1-d_airline SIAM_AIR_TRANSPORT
+\; \$1-d_loc 505 \; \$1-d_city Bangkok/DMK \; \$1-a_flight MF_8015
+\; \$1-a_airline Xiamen_Airlines \; \$1-a_loc A \; \$1-a_city Xiamen
+\; \$1-a_flight CX_807 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+A \; \$1-a_city Chicago \; 1000 \$1-ts 20:09 \; \$1-d_flight SQ_871
+\; \$1-d_airline Singapore_Airlines \; \$1-d_loc 16 \; \$1-d_city Singapore
+\; 1000 \$1-ts 20:10 \; \$1-d_flight HX_304 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 522 \; \$1-d_city Beijing \; \$1-a_flight AK_130 \; \$1-a_airline
+AirAsia \; \$1-a_loc A \; \$1-a_city Kuala_Lumpur \; 1000 \$1-ts 20:11
+\; 1000 \$1-ts 20:12 \; \$1-d_flight CI_920 \; \$1-d_airline China_Airlines
+\; \$1-d_loc 31 \; \$1-d_city Taipei \; \$1-a_flight FD_502 \; \$1-a_airline
+Thai_AirAsia \; \$1-a_loc A \; \$1-a_city Bangkok/DMK \; 1000 \$1-ts
+20:13 \; 1000 \$1-ts 20:14 \; \$1-a_flight HX_273 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Nanchang \; \$1-a_flight
+MU_505 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city
+Shanghai/PVG \; 1000 \$1-ts 20:15 \; 1000 \$1-ts 20:16 \; \$1-d_flight
+AK_238 \; \$1-d_airline AirAsia \; \$1-d_loc 509 \; \$1-d_city Kota_Kinabalu
+\; 1000 \$1-ts 20:17 \; \$1-d_flight KA_906 \; \$1-d_airline Dragonair
+\; \$1-d_loc 24 \; \$1-d_city Beijing \; 1000 \$1-ts 20:18 \; 1000
+\$1-ts 20:19 \; \$1-a_flight CX_549 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Tokyo/HND \; 1000 \$1-ts 20:20 \; 1000
+\$1-ts 20:21 \; \$1-d_flight BR_872 \; \$1-d_airline EVA_Air \; \$1-d_loc
+62 \; \$1-d_city Taipei \; \$1-d_flight CX_611 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 1 \; \$1-d_city Colombo \; 1000 \$1-ts 20:22 \; 1000 \$1-ts
+20:23 \; 1000 \$1-ts 20:24 \; \$1-d_flight KA_786 \; \$1-d_airline
+Dragonair \; \$1-d_loc 29 \; \$1-d_city Guangzhou \; \$1-a_flight CI_937
+\; \$1-a_airline China_Airlines \; \$1-a_loc B \; \$1-a_city Kaohsiung
+\; 1000 \$1-ts 20:25 \; 1000 \$1-ts 20:26 \; \$1-d_flight UO_874 \;
+\$1-d_airline HK_Express \; \$1-d_loc 520 \; \$1-d_city Osaka/Kansai
+\; \$1-d_flight FD_525 \; \$1-d_airline Thai_AirAsia \; \$1-d_loc 503
+\; \$1-d_city Phuket \; \$1-a_flight HX_327 \; \$1-a_airline Hong_Kong_Airlines
+\; \$1-a_loc A \; \$1-a_city Hohhot \; 1000 \$1-ts 20:27 \; 1000 \$1-ts
+20:28 \; \$1-d_flight 3K_696 \; \$1-d_airline Jetstar_Asia_Airways
+\; \$1-d_loc 512 \; \$1-d_city Singapore \; 1000 \$1-ts 20:29 \; 1000
+\$1-ts 20:30 \; 1000 \$1-ts 20:31 \; \$1-d_flight 5J_119 \; \$1-d_airline
+Cebu_Pacific_Air \; \$1-d_loc 18 \; \$1-d_city Manila \; \$1-a_flight
+QR_816 \; \$1-a_airline QATAR_AIRWAYS \; \$1-a_loc A \; \$1-a_city
+Doha \; 1000 \$1-ts 20:32 \; \$1-d_flight CX_791 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 41 \; \$1-d_city Kuala_Lumpur \; 1000 \$1-ts 20:33 \;
+1000 \$1-ts 20:34 \; \$1-d_flight CA_116 \; \$1-d_airline Air_China
+\; \$1-d_loc 502 \; \$1-d_city Beijing \; \$1-a_flight KA_455 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Kaohsiung \; 1000 \$1-ts 20:35
+\; 1000 \$1-ts 20:36 \; \$1-d_flight CX_913 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 32 \; \$1-d_city Manila \; 1000 \$1-ts 20:37 \; 1000 \$1-ts
+20:38 \; 1000 \$1-ts 20:39 \; \$1-d_flight CX_697 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 45 \; \$1-d_city Delhi \; \$1-a_flight
+TR_2068 \; \$1-a_airline Tigerair \; \$1-a_loc A \; \$1-a_city Singapore
+\; 1000 \$1-ts 20:40 \; \$1-d_flight CX_468 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 25 \; \$1-d_city Taipei \; \$1-d_flight MH_433 \; \$1-d_airline
+Malaysia_Airlines \; \$1-d_loc 68 \; \$1-d_city Kuala_Lumpur \; 1000
+\$1-ts 20:41 \; \$1-d_flight ZH_9044 \; \$1-d_airline Shenzhen_Airlines
+\; \$1-d_loc 523 \; \$1-d_city Jinjiang \; \$1-a_flight UO_639 \; \$1-a_airline
+HK_Express \; \$1-a_loc B \; \$1-a_city Fukuoka \; 1000 \$1-ts 20:42
+\; \$1-d_flight MF_8002 \; \$1-d_airline Xiamen_Airlines \; \$1-d_loc
+511 \; \$1-d_city Fuzhou \; \$1-a_flight CX_784 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Denpasar \; 1000 \$1-ts 20:43 \; \$1-a_flight
+CX_776 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Jakarta \; 1000 \$1-ts 20:44 \; 1000 \$1-ts 20:45 \; 1000 \$1-ts 20:46
+\; 1000 \$1-ts 20:47 \; \$1-d_flight AE_1832 \; \$1-d_airline Mandarin_Airlines
+\; \$1-d_loc 525 \; \$1-d_city Taichung \; 1000 \$1-ts 20:48 \; 1000
+\$1-ts 20:49 \; \$1-d_flight HX_496 \; \$1-d_airline Hong_Kong_Airlines
+\; \$1-d_loc 507 \; \$1-d_city Chongqing \; 1000 \$1-ts 20:50 \; 1000
+\$1-ts 20:51 \; \$1-d_flight TG_607 \; \$1-d_airline Thai_Airways \;
+\$1-d_loc 63 \; \$1-d_city Bangkok \; \$1-d_flight FD_503 \; \$1-d_airline
+Thai_AirAsia \; \$1-d_loc 508 \; \$1-d_city Bangkok/DMK \; 1000 \$1-ts
+20:52 \; 1000 \$1-ts 20:53 \; \$1-a_flight CI_923 \; \$1-a_airline
+China_Airlines \; \$1-a_loc B \; \$1-a_city Taipei \; 1000 \$1-ts 20:54
+\; 1000 \$1-ts 20:55 \; \$1-a_flight CA_117 \; \$1-a_airline Air_China
+\; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts 20:56 \; \$1-d_flight
+KA_824 \; \$1-d_airline Dragonair \; \$1-d_loc 69 \; \$1-d_city Chengdu
+\; \$1-a_flight CX_521 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Tokyo/NRT \; 1000 \$1-ts 20:57 \; \$1-d_flight AK_131
+\; \$1-d_airline AirAsia \; \$1-d_loc 20 \; \$1-d_city Kuala_Lumpur
+\; \$1-a_flight UA_179 \; \$1-a_airline United_Airlines \; \$1-a_loc
+A \; \$1-a_city Newark \; \$1-a_flight OX_200 \; \$1-a_airline ORIENT_THAI
+\; \$1-a_loc A \; \$1-a_city Bangkok \; 1000 \$1-ts 20:58 \; 1000 \$1-ts
+20:59 \; \$1-a_flight CX_918 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Manila \; 1000 \$1-ts 21:00 \; \$1-d_flight KA_622
+\; \$1-d_airline Dragonair \; \$1-d_loc 70 \; \$1-d_city Hangzhou \;
+1000 \$1-ts 21:01 \; \$1-d_flight CX_197 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 35 \; \$1-d_city Auckland \; 1000 \$1-ts 21:02 \; \$1-a_flight
+BR_857 \; \$1-a_airline EVA_Air \; \$1-a_loc A \; \$1-a_city Taipei
+\; 1000 \$1-ts 21:03 \; \$1-d_flight MF_8016 \; \$1-d_airline Xiamen_Airlines
+\; \$1-d_loc 510 \; \$1-d_city Xiamen \; \$1-d_flight GK_064 \; \$1-d_airline
+Jetstar_Japan \; \$1-d_loc 22 \; \$1-d_city Osaka/Kansai \; 1000 \$1-ts
+21:04 \; 1000 \$1-ts 21:05 \; \$1-d_flight MU_506 \; \$1-d_airline
+China_Eastern_Airlines \; \$1-d_loc 40 \; \$1-d_city Shanghai/PVG \;
+\$1-d_flight EK_385 \; \$1-d_airline Emirates \; \$1-d_loc 60 \; \$1-d_city
+Bangkok \; 1000 \$1-ts 21:06 \; \$1-a_flight CX_734 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Singapore \; 1000 \$1-ts
+21:07 \; \$1-d_flight KA_154 \; \$1-d_airline Dragonair \; \$1-d_loc
+33 \; \$1-d_city Bangalore \; 1000 \$1-ts 21:08 \; 1000 \$1-ts 21:09
+\; 1000 \$1-ts 21:10 \; \$1-a_flight 5J_114 \; \$1-a_airline Cebu_Pacific_Air
+\; \$1-a_loc A \; \$1-a_city Manila \; 1000 \$1-ts 21:11 \; \$1-d_flight
+HX_234 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 49 \; \$1-d_city
+Shanghai/PVG \; \$1-a_flight BR_809 \; \$1-a_airline EVA_Air \; \$1-a_loc
+A \; \$1-a_city Taipei \; \$1-a_flight CX_708 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 21:12 \; \$1-d_flight
+CX_663 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc 61 \; \$1-d_city
+Mumbai \; \$1-a_flight KA_721 \; \$1-a_airline Dragonair \; \$1-a_loc
+A \; \$1-a_city Changsha \; 1000 \$1-ts 21:13 \; 1000 \$1-ts 21:14
+\; \$1-d_flight HX_452 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc
+513 \; \$1-d_city Chengdu \; \$1-a_flight KA_891 \; \$1-a_airline Dragonair
+\; \$1-a_loc A \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 21:15 \; 1000
+\$1-ts 21:16 \; 1000 \$1-ts 21:17 \; \$1-a_flight UO_1559 \; \$1-a_airline
+HK_Express \; \$1-a_loc A \; \$1-a_city Da_Nang \; 1000 \$1-ts 21:18
+\; \$1-d_flight HX_220 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc
+522 \; \$1-d_city Nanjing \; 1000 \$1-ts 21:19 \; 1000 \$1-ts 21:20
+\; \$1-d_flight KA_168 \; \$1-d_airline Dragonair \; \$1-d_loc 520
+\; \$1-d_city Kolkata \; \$1-a_flight CX_198 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Auckland \; 1000 \$1-ts 21:21 \; \$1-a_flight
+KA_225 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Da_Nang
+\; 1000 \$1-ts 21:22 \; 1000 \$1-ts 21:23 \; \$1-d_flight KA_870 \;
+\$1-d_airline Dragonair \; \$1-d_loc 521 \; \$1-d_city Shanghai/PVG
+\; \$1-d_flight CX_103 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+71 \; \$1-d_city Cairns \; 1000 \$1-ts 21:24 \; \$1-a_flight EK_380
+\; \$1-a_airline Emirates \; \$1-a_loc B \; \$1-a_city Dubai \; 1000
+\$1-ts 21:25 \; 1000 \$1-ts 21:26 \; 1000 \$1-ts 21:27 \; \$1-a_flight
+CX_712 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Singapore \; 1000 \$1-ts 21:28 \; 1000 \$1-ts 21:29 \; 1000 \$1-ts
+21:30 \; \$1-a_flight CX_401 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Taipei \; 1000 \$1-ts 21:31 \; \$1-a_flight HX_239
+\; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Shanghai/SHA
+\; 1000 \$1-ts 21:32 \; \$1-a_flight E8_246 \; \$1-a_airline City_Airways
+\; \$1-a_loc A \; \$1-a_city Phuket \; 1000 \$1-ts 21:33 \; \$1-a_flight
+CX_104 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Melbourne \; 1000 \$1-ts 21:34 \; \$1-d_flight HX_128 \; \$1-d_airline
+Hong_Kong_Airlines \; \$1-d_loc 524 \; \$1-d_city Hangzhou \; \$1-d_flight
+CI_938 \; \$1-d_airline China_Airlines \; \$1-d_loc 16 \; \$1-d_city
+Kaohsiung \; 1000 \$1-ts 21:35 \; \$1-a_flight CX_595 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc A \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts
+21:36 \; 1000 \$1-ts 21:37 \; \$1-a_flight CX_451 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Tokyo/NRT \; 1000 \$1-ts
+21:38 \; 1000 \$1-ts 21:39 \; \$1-a_flight CX_369 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts
+21:40 \; 1000 \$1-ts 21:41 \; 1000 \$1-ts 21:42 \; \$1-a_flight PR_310
+\; \$1-a_airline Philippine_Airlines \; \$1-a_loc A \; \$1-a_city Manila
+\; \$1-a_flight PG_873 \; \$1-a_airline Bangkok_Airways \; \$1-a_loc
+A \; \$1-a_city Samui \; 1000 \$1-ts 21:43 \; 1000 \$1-ts 21:44 \;
+1000 \$1-ts 21:45 \; \$1-a_flight KA_637 \; \$1-a_airline Dragonair
+\; \$1-a_loc A \; \$1-a_city Hangzhou \; 1000 \$1-ts 21:46 \; 1000
+\$1-ts 21:47 \; \$1-a_flight KA_875 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Shanghai/PVG \; \$1-a_flight CX_507 \; \$1-a_airline
+Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Osaka/Kansai \; 1000 \$1-ts
+21:48 \; \$1-d_flight CI_924 \; \$1-d_airline China_Airlines \; \$1-d_loc
+31 \; \$1-d_city Taipei \; 1000 \$1-ts 21:49 \; \$1-d_flight 5J_115
+\; \$1-d_airline Cebu_Pacific_Air \; \$1-d_loc 502 \; \$1-d_city Manila
+\; \$1-d_flight CX_649 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+21 \; \$1-d_city Hyderabad \; 1000 \$1-ts 21:50 \; \$1-d_flight TR_2069
+\; \$1-d_airline Tigerair \; \$1-d_loc 504 \; \$1-d_city Singapore
+\; \$1-a_flight 5J_142 \; \$1-a_airline Cebu_Pacific_Air \; \$1-a_loc
+A \; \$1-a_city Manila \; 1000 \$1-ts 21:51 \; 1000 \$1-ts 21:52 \;
+1000 \$1-ts 21:53 \; \$1-d_flight UO_614 \; \$1-d_airline HK_Express
+\; \$1-d_loc 509 \; \$1-d_city Seoul/ICN \; 1000 \$1-ts 21:54 \; \$1-a_flight
+CX_724 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Kuala_Lumpur \; 1000 \$1-ts 21:55 \; \$1-a_flight MU_723 \; \$1-a_airline
+China_Eastern_Airlines \; \$1-a_loc A \; \$1-a_city Shanghai/PVG \;
+1000 \$1-ts 21:56 \; 1000 \$1-ts 21:57 \; \$1-d_flight KA_450 \; \$1-d_airline
+Dragonair \; \$1-d_loc 4 \; \$1-d_city Kaohsiung \; \$1-d_flight HX_173
+\; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc 501 \; \$1-d_city
+Fuzhou \; 1000 \$1-ts 21:58 \; \$1-a_flight KA_638 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Penang \; 1000 \$1-ts 21:59
+\; \$1-d_flight BR_858 \; \$1-d_airline EVA_Air \; \$1-d_loc 28 \;
+\$1-d_city Taipei \; \$1-a_flight CI_927 \; \$1-a_airline China_Airlines
+\; \$1-a_loc B \; \$1-a_city Taipei \; \$1-a_flight HX_2207 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Zunyi \; 1000 \$1-ts
+22:00 \; 1000 \$1-ts 22:01 \; \$1-d_flight KA_616 \; \$1-d_airline
+Dragonair \; \$1-d_loc 512 \; \$1-d_city Xiamen \; 1000 \$1-ts 22:02
+\; \$1-a_flight UO_1333 \; \$1-a_airline HK_Express \; \$1-a_loc A
+\; \$1-a_city Ningbo \; \$1-a_flight KA_835 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 22:03 \; 1000
+\$1-ts 22:04 \; 1000 \$1-ts 22:05 \; 1000 \$1-ts 22:06 \; 1000 \$1-ts
+22:07 \; \$1-a_flight CX_100 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Sydney \; 1000 \$1-ts 22:08 \; \$1-a_flight DL_275
+\; \$1-a_airline Delta_Air_Lines \; \$1-a_loc A \; \$1-a_city Detroit
+\; \$1-a_flight CX_902 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc
+B \; \$1-a_city Manila \; 1000 \$1-ts 22:09 \; 1000 \$1-ts 22:10 \;
+1000 \$1-ts 22:11 \; \$1-a_flight CX_716 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Singapore \; 1000 \$1-ts 22:12 \; \$1-d_flight
+BR_810 \; \$1-d_airline EVA_Air \; \$1-d_loc 32 \; \$1-d_city Taipei
+\; 1000 \$1-ts 22:13 \; \$1-a_flight UO_165 \; \$1-a_airline HK_Express
+\; \$1-a_loc A \; \$1-a_city Taichung \; 1000 \$1-ts 22:14 \; 1000
+\$1-ts 22:15 \; \$1-d_flight KA_250 \; \$1-d_airline Dragonair \; \$1-d_loc
+20 \; \$1-d_city Yangon \; \$1-a_flight UA_869 \; \$1-a_airline United_Airlines
+\; \$1-a_loc A \; \$1-a_city San_Francisco \; 1000 \$1-ts 22:16 \;
+1000 \$1-ts 22:17 \; 1000 \$1-ts 22:18 \; \$1-a_flight SQ_002 \; \$1-a_airline
+Singapore_Airlines \; \$1-a_loc B \; \$1-a_city Singapore \; 1000 \$1-ts
+22:19 \; \$1-d_flight CX_709 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+50 \; \$1-d_city Bangkok \; 1000 \$1-ts 22:20 \; \$1-d_flight CX_905
+\; \$1-d_airline Cathay_Pacific \; \$1-d_loc 23 \; \$1-d_city Manila
+\; \$1-a_flight HX_203 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc
+A \; \$1-a_city Xuzhou \; \$1-a_flight CA_107 \; \$1-a_airline Air_China
+\; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts 22:21 \; \$1-a_flight
+UA_159 \; \$1-a_airline United_Airlines \; \$1-a_loc A \; \$1-a_city
+Guam \; 1000 \$1-ts 22:22 \; 1000 \$1-ts 22:23 \; \$1-d_flight 5J_143
+\; \$1-d_airline Cebu_Pacific_Air \; \$1-d_loc 508 \; \$1-d_city Manila
+\; \$1-a_flight KA_663 \; \$1-a_airline Dragonair \; \$1-a_loc A \;
+\$1-a_city Fuzhou \; \$1-a_flight TG_602 \; \$1-a_airline Thai_Airways
+\; \$1-a_loc B \; \$1-a_city Bangkok \; 1000 \$1-ts 22:24 \; 1000 \$1-ts
+22:25 \; 1000 \$1-ts 22:26 \; 1000 \$1-ts 22:27 \; \$1-a_flight KA_993
+\; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Beijing \;
+1000 \$1-ts 22:28 \; 1000 \$1-ts 22:29 \; \$1-a_flight KA_209 \; \$1-a_airline
+Dragonair \; \$1-a_loc B \; \$1-a_city Phnom_Penh \; 1000 \$1-ts 22:30
+\; \$1-d_flight E8_329 \; \$1-d_airline City_Airways \; \$1-d_loc 503
+\; \$1-d_city Bangkok/DMK \; 1000 \$1-ts 22:31 \; \$1-a_flight CX_531
+\; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Nagoya
+\; 1000 \$1-ts 22:32 \; 1000 \$1-ts 22:33 \; 1000 \$1-ts 22:34 \; 1000
+\$1-ts 22:35 \; \$1-d_flight CX_771 \; \$1-d_airline Cathay_Pacific
+\; \$1-d_loc 34 \; \$1-d_city Ho_Chi_Minh \; \$1-a_flight HX_283 \;
+\$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Taipei
+\; 1000 \$1-ts 22:36 \; 1000 \$1-ts 22:37 \; 1000 \$1-ts 22:38 \; \$1-a_flight
+CX_505 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Tokyo/NRT \; 1000 \$1-ts 22:39 \; 1000 \$1-ts 22:40 \; \$1-a_flight
+KA_855 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Wuhan
+\; 1000 \$1-ts 22:41 \; 1000 \$1-ts 22:42 \; \$1-a_flight NH_811 \;
+\$1-a_airline All_Nippon_Airways \; \$1-a_loc A \; \$1-a_city Tokyo/NRT
+\; 1000 \$1-ts 22:43 \; 1000 \$1-ts 22:44 \; \$1-a_flight UO_1361 \;
+\$1-a_airline HK_Express \; \$1-a_loc B \; \$1-a_city Wuxi \; 1000
+\$1-ts 22:45 \; 1000 \$1-ts 22:46 \; \$1-a_flight JL_735 \; \$1-a_airline
+Japan_Airlines \; \$1-a_loc A \; \$1-a_city Tokyo/NRT \; \$1-a_flight
+CX_702 \; \$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city
+Bangkok \; 1000 \$1-ts 22:47 \; 1000 \$1-ts 22:48 \; 1000 \$1-ts 22:49
+\; 1000 \$1-ts 22:50 \; \$1-d_flight KA_996 \; \$1-d_airline Dragonair
+\; \$1-d_loc 520 \; \$1-d_city Beijing \; 1000 \$1-ts 22:51 \; 1000
+\$1-ts 22:52 \; \$1-a_flight KA_605 \; \$1-a_airline Dragonair \; \$1-a_loc
+B \; \$1-a_city Xiamen \; \$1-a_flight OZ_745 \; \$1-a_airline Asiana_Airlines
+\; \$1-a_loc A \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 22:53 \; \$1-d_flight
+CI_928 \; \$1-d_airline China_Airlines \; \$1-d_loc 25 \; \$1-d_city
+Taipei \; \$1-a_flight HX_229 \; \$1-a_airline Hong_Kong_Airlines \;
+\$1-a_loc A \; \$1-a_city Hangzhou \; 1000 \$1-ts 22:54 \; \$1-a_flight
+KA_068 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Kota_Kinabalu
+\; 1000 \$1-ts 22:55 \; \$1-d_flight PR_311 \; \$1-d_airline Philippine_Airlines
+\; \$1-d_loc 36 \; \$1-d_city Manila \; 1000 \$1-ts 22:56 \; 1000 \$1-ts
+22:57 \; 1000 \$1-ts 22:58 \; 1000 \$1-ts 22:59 \; 1000 \$1-ts 23:00
+\; 1000 \$1-ts 23:01 \; \$1-a_flight KA_457 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Kaohsiung \; 1000 \$1-ts 23:02 \; 1000
+\$1-ts 23:03 \; 1000 \$1-ts 23:04 \; \$1-d_flight CX_408 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 64 \; \$1-d_city Taipei \; \$1-a_flight
+KA_483 \; \$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Taipei
+\; 1000 \$1-ts 23:05 \; 1000 \$1-ts 23:06 \; \$1-a_flight CX_561 \;
+\$1-a_airline Cathay_Pacific \; \$1-a_loc B \; \$1-a_city Osaka/Kansai
+\; 1000 \$1-ts 23:07 \; 1000 \$1-ts 23:08 \; \$1-d_flight TK_071 \;
+\$1-d_airline TURKISH_AIRLINES \; \$1-d_loc 48 \; \$1-d_city Istanbul
+\; 1000 \$1-ts 23:09 \; 1000 \$1-ts 23:10 \; 1000 \$1-ts 23:11 \; \$1-d_flight
+UA_116 \; \$1-d_airline United_Airlines \; \$1-d_loc 506 \; \$1-d_city
+Guam \; 1000 \$1-ts 23:12 \; \$1-a_flight CX_934 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Manila \; 1000 \$1-ts 23:13 \; \$1-a_flight
+KE_607 \; \$1-a_airline Korean_Air \; \$1-a_loc A \; \$1-a_city Seoul/ICN
+\; \$1-a_flight KA_903 \; \$1-a_airline Dragonair \; \$1-a_loc A \;
+\$1-a_city Beijing \; 1000 \$1-ts 23:14 \; 1000 \$1-ts 23:15 \; \$1-d_flight
+UA_895 \; \$1-d_airline United_Airlines \; \$1-d_loc 65 \; \$1-d_city
+Singapore \; \$1-d_flight AF_185 \; \$1-d_airline Air_France \; \$1-d_loc
+19 \; \$1-d_city Paris \; \$1-a_flight CX_926 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Cebu \; 1000 \$1-ts 23:16 \; \$1-a_flight
+KA_215 \; \$1-a_airline Dragonair \; \$1-a_loc A \; \$1-a_city Phuket
+\; 1000 \$1-ts 23:17 \; 1000 \$1-ts 23:18 \; 1000 \$1-ts 23:19 \; 1000
+\$1-ts 23:20 \; \$1-a_flight CX_419 \; \$1-a_airline Cathay_Pacific
+\; \$1-a_loc B \; \$1-a_city Seoul/ICN \; 1000 \$1-ts 23:21 \; \$1-a_flight
+OZ_749 \; \$1-a_airline Asiana_Airlines \; \$1-a_loc A \; \$1-a_city
+Seoul/ICN \; 1000 \$1-ts 23:22 \; \$1-d_flight CX_617 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 68 \; \$1-d_city Bangkok \; 1000 \$1-ts
+23:23 \; 1000 \$1-ts 23:24 \; 1000 \$1-ts 23:25 \; 1000 \$1-ts 23:26
+\; 1000 \$1-ts 23:27 \; 1000 \$1-ts 23:28 \; \$1-a_flight KA_809 \;
+\$1-a_airline Dragonair \; \$1-a_loc B \; \$1-a_city Shanghai/PVG \;
+1000 \$1-ts 23:29 \; \$1-a_flight PR_312 \; \$1-a_airline Philippine_Airlines
+\; \$1-a_loc B \; \$1-a_city Manila \; 1000 \$1-ts 23:30 \; \$1-d_flight
+LH_797 \; \$1-d_airline Lufthansa \; \$1-d_loc 60 \; \$1-d_city Frankfurt
+\; \$1-d_flight HX_773 \; \$1-d_airline Hong_Kong_Airlines \; \$1-d_loc
+521 \; \$1-d_city Bangkok \; \$1-d_flight BA_032 \; \$1-d_airline British_Airways
+\; \$1-d_loc 15 \; \$1-d_city London/LHR \; 1000 \$1-ts 23:31 \; \$1-a_flight
+HX_693 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city
+Sapporo \; 1000 \$1-ts 23:32 \; 1000 \$1-ts 23:33 \; 1000 \$1-ts 23:34
+\; 1000 \$1-ts 23:35 \; \$1-a_flight KA_789 \; \$1-a_airline Dragonair
+\; \$1-a_loc A \; \$1-a_city Guangzhou \; \$1-a_flight SQ_868 \; \$1-a_airline
+Singapore_Airlines \; \$1-a_loc B \; \$1-a_city Singapore \; 1000 \$1-ts
+23:36 \; \$1-a_flight BR_827 \; \$1-a_airline EVA_Air \; \$1-a_loc
+A \; \$1-a_city Taipei \; 1000 \$1-ts 23:37 \; 1000 \$1-ts 23:38 \;
+1000 \$1-ts 23:39 \; \$1-d_flight UO_763 \; \$1-d_airline HK_Express
+\; \$1-d_loc 524 \; \$1-d_city Phuket \; 1000 \$1-ts 23:40 \; \$1-d_flight
+SQ_002 \; \$1-d_airline Singapore_Airlines \; \$1-d_loc 18 \; \$1-d_city
+San_Francisco \; 1000 \$1-ts 23:41 \; 1000 \$1-ts 23:42 \; \$1-a_flight
+HX_766 \; \$1-a_airline Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city
+Bangkok \; 1000 \$1-ts 23:43 \; \$1-d_flight CX_161 \; \$1-d_airline
+Cathay_Pacific \; \$1-d_loc 43 \; \$1-d_city Sydney \; \$1-d_flight
+SA_287 \; \$1-d_airline South_African_Airways \; \$1-d_loc 31 \; \$1-d_city
+Johannesburg \; 1000 \$1-ts 23:44 \; \$1-a_flight HX_706 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc B \; \$1-a_city Denpasar \; 1000 \$1-ts
+23:45 \; \$1-d_flight HX_284 \; \$1-d_airline Hong_Kong_Airlines \;
+\$1-d_loc 523 \; \$1-d_city Taipei \; \$1-a_flight HX_313 \; \$1-a_airline
+Hong_Kong_Airlines \; \$1-a_loc A \; \$1-a_city Beijing \; 1000 \$1-ts
+23:46 \; 1000 \$1-ts 23:47 \; 1000 \$1-ts 23:48 \; \$1-d_flight BA_028
+\; \$1-d_airline British_Airways \; \$1-d_loc 16 \; \$1-d_city London/LHR
+\; \$1-a_flight MU_725 \; \$1-a_airline China_Eastern_Airlines \; \$1-a_loc
+A \; \$1-a_city Shanghai/PVG \; 1000 \$1-ts 23:49 \; \$1-a_flight MH_078
+\; \$1-a_airline Malaysia_Airlines \; \$1-a_loc B \; \$1-a_city Kuala_Lumpur
+\; 1000 \$1-ts 23:50 \; \$1-a_flight KA_294 \; \$1-a_airline Dragonair
+\; \$1-a_loc B \; \$1-a_city Hanoi \; 1000 \$1-ts 23:51 \; 1000 \$1-ts
+23:52 \; \$1-d_flight HX_761 \; \$1-d_airline Hong_Kong_Airlines \;
+\$1-d_loc 522 \; \$1-d_city Bangkok \; 1000 \$1-ts 23:53 \; 1000 \$1-ts
+23:54 \; \$1-a_flight UO_1629 \; \$1-a_airline HK_Express \; \$1-a_loc
+B \; \$1-a_city Tokyo/NRT \; 1000 \$1-ts 23:55 \; 1000 \$1-ts 23:56
+\; \$1-d_flight CX_749 \; \$1-d_airline Cathay_Pacific \; \$1-d_loc
+45 \; \$1-d_city Johannesburg \; 1000 \$1-ts 23:57 \; 1000 \$1-ts 23:58
+\; 1000 \$1-ts 23:59 \; 1000 \$1-loop \;;
+#X obj 201 436 text sequence \$0-smairport-seq -g;
+#X obj 285 366 f \$0;
+#X msg 285 390 args \$1;
+#X obj 337 300 t b b;
+#X obj 102 244 sel 1 0;
+#X msg 389 363 tempo 1 permsec;
+#X obj 67 181 t f f;
+#X obj 218 207 == 1;
+#X obj 165 318 spigot 0;
+#X obj 156 270 r \$0-loop;
+#X obj 293 250 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 0 0 6 0;
+#X connect 1 0 9 0;
+#X connect 2 0 12 0;
+#X connect 3 0 6 0;
+#X connect 4 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 6 0;
+#X connect 9 0 7 0;
+#X connect 9 1 11 0;
+#X connect 10 0 0 0;
+#X connect 10 1 3 0;
+#X connect 11 0 6 0;
+#X connect 12 0 10 0;
+#X connect 12 1 13 0;
+#X connect 13 0 14 1;
+#X connect 14 0 0 0;
+#X connect 15 0 14 0;
+#X connect 16 0 9 0;
+#X restore 343 236 pd sched;
+#N canvas 687 357 902 536 osc 0;
+#X msg 628 370 disconnect;
+#X msg 538 337 connect localhost 33333;
+#X msg 417 57 1;
+#X obj 443 192 sel 1 0;
+#X obj 421 103 oscformat -f f clients;
+#X obj 492 57 r \$0-clientsOSC;
+#X obj 537 250 list prepend send;
+#X obj 538 280 list trim;
+#X obj 525 397 netsend -u -b;
+#X obj 445 144 inlet;
+#N canvas 746 200 923 615 osc-messenger 0;
+#X obj 111 50 r \$0-ts;
+#X obj 111 116 symbol;
+#X obj 231 457 outlet;
+#X obj 311 99 r \$0-query-numclients;
+#X msg 311 123 bang;
+#X obj 311 147 oscformat num-clients;
+#X obj 78 190 oscformat -f ss ws all;
+#X obj 111 140 list prepend ts;
+#X obj 111 74 t a b, f 25;
+#X connect 0 0 8 0;
+#X connect 1 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X connect 8 0 1 0;
+#X connect 8 1 4 0;
+#X restore 647 199 pd osc-messenger;
+#N canvas 686 363 1223 936 departure-parser 0;
+#X obj 744 188 r \$0-d_flight;
+#X obj 186 123 r \$0-d_city;
+#X obj 445 88 r \$0-d_loc;
+#X obj 246 277 r \$0-d_airline;
+#X obj 585 137 % 2;
+#X obj 597 170 t f f;
+#X obj 556 326 route 0 1;
+#X obj 541 268 pack f f;
+#X msg 541 292 \$2 \$1;
+#X obj 585 351 - 1;
+#X obj 572 384 / 2;
+#X text 650 146 odds go to one inst/evens another;
+#X text 850 351 delay in ms;
+#X obj 186 147 symbol;
+#X obj 255 314 symbol;
+#X obj 243 814 outlet;
+#X obj 798 355 * 2;
+#X obj 445 112 t f f f, f 20;
+#X text 521 751 city airline flight gate freq inst delayms;
+#X obj 744 212 symbol;
+#X obj 751 246 t s s;
+#X obj 788 305 sma-ext/sma-flnumparse;
+#X obj 251 492 pack s s s f f f f, f 87;
+#X obj 247 530 list prepend departure;
+#X obj 247 554 t l b, f 11;
+#X obj 318 618 t b f;
+#X obj 303 593 v \$0-num-clients;
+#X obj 303 656 random;
+#X obj 176 667 list prepend;
+#X obj 577 454 mtof;
+#X obj 240 749 oscformat -f fssssffff ws client-idx;
+#X obj 148 393 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 672 556 440;
+#X obj 140 730 print;
+#X obj 567 421 sma-ext/dkvscaledeg major 37;
+#X connect 0 0 19 0;
+#X connect 1 0 13 0;
+#X connect 2 0 17 0;
+#X connect 3 0 14 0;
+#X connect 4 0 5 0;
+#X connect 5 0 7 1;
+#X connect 5 1 22 5;
+#X connect 6 0 10 0;
+#X connect 6 1 9 0;
+#X connect 7 0 8 0;
+#X connect 8 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 34 0;
+#X connect 13 0 22 0;
+#X connect 14 0 22 1;
+#X connect 16 0 22 6;
+#X connect 17 0 22 3;
+#X connect 17 1 7 0;
+#X connect 17 2 4 0;
+#X connect 19 0 20 0;
+#X connect 20 0 22 2;
+#X connect 20 1 21 0;
+#X connect 21 0 16 0;
+#X connect 22 0 23 0;
+#X connect 22 0 33 0;
+#X connect 23 0 24 0;
+#X connect 24 0 28 0;
+#X connect 24 1 26 0;
+#X connect 25 0 27 0;
+#X connect 25 1 27 1;
+#X connect 26 0 25 0;
+#X connect 27 0 28 1;
+#X connect 28 0 30 0;
+#X connect 29 0 22 4;
+#X connect 30 0 15 0;
+#X connect 31 0 13 0;
+#X connect 32 0 22 4;
+#X connect 34 0 29 0;
+#X restore 633 162 pd departure-parser;
+#N canvas 1045 327 1512 1110 arrival-parser 0;
+#X obj 239 959 outlet;
+#X obj 719 311 * 2;
+#X obj 213 150 symbol;
+#X obj 512 167 symbol;
+#X obj 207 117 r \$0-a_city;
+#X obj 345 119 r \$0-a_loc;
+#X obj 512 143 r \$0-a_airline;
+#X obj 650 137 r \$0-a_flight;
+#X obj 700 361 * 0.025;
+#X obj 700 385 pow 0.35;
+#X obj 700 409 * 1299;
+#X text 759 312 duration in ms;
+#X obj 345 143 symbol;
+#X text 364 888 city hall airline flight dur;
+#X obj 235 526 pack s s s s f, f 61;
+#X obj 650 221 t s s;
+#X obj 650 161 symbol;
+#X obj 691 263 sma-ext/sma-flnumparse;
+#X obj 235 550 list prepend arrival;
+#X obj 249 600 t l b, f 11;
+#X obj 320 664 t b f;
+#X obj 305 639 v \$0-num-clients;
+#X obj 305 702 random;
+#X obj 235 735 list prepend;
+#X obj 235 836 oscformat -f fssssf ws client-idx;
+#X obj 113 156 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 1 0 8 0;
+#X connect 2 0 14 0;
+#X connect 3 0 14 2;
+#X connect 4 0 2 0;
+#X connect 5 0 12 0;
+#X connect 6 0 3 0;
+#X connect 7 0 16 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 14 4;
+#X connect 12 0 14 1;
+#X connect 14 0 18 0;
+#X connect 15 0 14 3;
+#X connect 15 1 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 1 0;
+#X connect 18 0 19 0;
+#X connect 19 0 23 0;
+#X connect 19 1 21 0;
+#X connect 20 0 22 0;
+#X connect 20 1 22 1;
+#X connect 21 0 20 0;
+#X connect 22 0 23 1;
+#X connect 23 0 24 0;
+#X connect 24 0 0 0;
+#X connect 25 0 2 0;
+#X restore 616 110 pd arrival-parser;
+#N canvas 270 276 980 719 osc-receiver 0;
+#X obj 150 170 oscparse;
+#X obj 150 192 list trim;
+#X obj 116 128 netreceive -u -b 11111;
+#X obj 129 237 route client-list num-clients;
+#X obj 226 281 v \$0-num-clients;
+#X msg 345 184 1;
+#X floatatom 170 340 5 0 0 0 - - -;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 3 1 4 0;
+#X connect 3 1 6 0;
+#X connect 5 0 4 0;
+#X restore 254 53 pd osc-receiver;
+#X connect 0 0 8 0;
+#X connect 1 0 8 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 3 1 0 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 9 0 3 0;
+#X connect 10 0 6 0;
+#X connect 11 0 6 0;
+#X connect 12 0 6 0;
+#X restore 278 273 pd osc;
+#X obj 274 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 415 164 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 415 184 s \$0-smw-play;
+#X obj 109 172 loadbang;
+#X obj 109 196 t b b;
+#X msg 141 224 1;
+#X msg 109 220 1;
+#X connect 3 0 2 0;
+#X connect 5 0 6 0;
+#X connect 5 0 4 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 1;
+#X connect 9 0 0 0;
+#X connect 10 0 0 1;
+#X connect 11 0 12 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 1;
+#X connect 15 0 16 0;
+#X connect 17 0 18 0;
+#X connect 18 0 3 0;
+#X connect 18 0 11 0;
+#X connect 18 0 15 0;
+#X connect 21 0 20 0;
+#X connect 22 0 23 0;
+#X connect 24 0 25 0;
+#X connect 25 0 27 0;
+#X connect 25 1 26 0;
+#X connect 26 0 20 0;
+#X connect 27 0 23 0;

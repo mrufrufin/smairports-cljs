@@ -1,0 +1,3 @@
+autostarter = /etc/xdg/lxsession/LXDE-pi/autostart
+dhcpcd.conf = /etc/dhcpcd.conf
+

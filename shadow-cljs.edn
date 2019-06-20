@@ -1,0 +1,27 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src"]
+
+  :dependencies
+ [[reagent "0.8.1"]
+  [hiccups "0.3.0"]
+  ]
+
+
+ :builds
+ {:app {:output-dir "public/js"
+        :asset-path "js"
+        :target :browser
+        :modules {:client
+                  {:entries [smairports.client]}}
+        :devtools {:http-root "public"
+                   :http-port 8020}
+        :compiler-options
+        {:externs ["public/js/Tone.min.js"
+                   ;"public/js/Tone.js"
+                   "public/js/NoSleep.min.js"
+                   "public/js/socket.io.slim.js"
+                   ]}
+
+  }}
+ }
